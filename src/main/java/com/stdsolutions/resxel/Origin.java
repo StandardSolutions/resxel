@@ -1,20 +1,7 @@
 package com.stdsolutions.resxel;
 
 /**
- * Represents the origin of a resource - a passive data transfer object (DTO) that describes
- * where and what to search for.
- * <p>
- * An {@code Origin} encapsulates the metadata and location information needed to identify
- * and retrieve a resource. It acts as a descriptor that provides all necessary details
- * for a {@link Source} to locate and read the target resource.
- * </p>
- * <p>
- * Typical implementations might include file paths, URLs, database connection details,
- * or any other location identifiers along with search criteria or filters.
- * </p>
- *
- * @see Source
- * @see Resource
+ * Represents the origin of a resource that describes where and what to search for.
  */
 public interface Origin {
 
@@ -27,7 +14,7 @@ public interface Origin {
      *
      * @return the location identifier, never {@code null}
      */
-    String getLocation();
+    String location();
 
     /**
      * Returns the type or scheme of this origin.
@@ -38,23 +25,17 @@ public interface Origin {
      *
      * @return the origin type/scheme, never {@code null}
      */
-    String getType();
+    String type();
 
     /**
-     * Returns additional metadata or properties associated with this origin.
+     * Provides a human-readable description of this origin.
      * <p>
-     * This may include search criteria, filters, authentication credentials,
-     * or any other configuration needed to locate and access the resource.
+     * Intended mainly for logging or debugging. By default, combines type and location.
      * </p>
      *
-     * @return a map of metadata properties, may be empty but never {@code null}
+     * @return the descriptive string of this origin, never {@code null}
      */
-    java.util.Map<String, Object> getMetadata();
-
-    /**
-     * Returns a human-readable description of this origin.
-     *
-     * @return a description of this origin, may be {@code null}
-     */
-    String getDescription();
+    default String description() {
+        return type() + ":" + location();
+    }
 }
