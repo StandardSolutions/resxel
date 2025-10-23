@@ -14,13 +14,13 @@ public interface Resource {
      * Returns the content of this resource as a byte array.
      * <p>
      * This method loads the entire resource into memory. For large resources,
-     * consider using {@link #getInputStream()} instead.
+     * consider using {@link #inputStream()} instead.
      * </p>
      *
      * @return the resource content as bytes, never {@code null}
      * @throws java.io.IOException if an error occurs reading the content
      */
-    byte[] getContent() throws java.io.IOException;
+    byte[] content() throws java.io.IOException;
 
     /**
      * Returns an input stream for reading the resource content.
@@ -31,5 +31,5 @@ public interface Resource {
      * @return an input stream for the resource content, never {@code null}
      * @throws java.io.IOException if an error occurs opening the stream
      */
-    java.io.InputStream getInputStream() throws java.io.IOException;
+    java.io.InputStream inputStream() throws java.io.IOException;
 }
