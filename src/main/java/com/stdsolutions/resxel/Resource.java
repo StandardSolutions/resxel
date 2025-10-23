@@ -20,16 +20,7 @@ public interface Resource {
      * @return the resource content as bytes, never {@code null}
      * @throws java.io.IOException if an error occurs reading the content
      */
-    byte[] content() throws java.io.IOException;
+    byte[] asBytes() throws java.io.IOException;
 
-    /**
-     * Returns an input stream for reading the resource content.
-     * <p>
-     * The caller is responsible for closing the returned stream.
-     * </p>
-     *
-     * @return an input stream for the resource content, never {@code null}
-     * @throws java.io.IOException if an error occurs opening the stream
-     */
-    java.io.InputStream inputStream() throws java.io.IOException;
+    Origin origin();
 }

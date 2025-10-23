@@ -38,4 +38,16 @@ public interface Origin {
     default String description() {
         return type() + ":" + location();
     }
+
+    final class Default {
+
+        private final String location;
+
+        private final String type;
+
+        public Default(String location, String type) {
+            this.location = location;
+            this.type = type;
+        }
+    }
 }
