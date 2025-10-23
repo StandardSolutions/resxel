@@ -1,14 +1,16 @@
-package com.stdsolutions.resxel.filesystem;
+package com.stdsolutions.resxel.localfs;
 
 import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.Source;
 
 import java.util.stream.Stream;
 
-public class FilesystemSource implements Source {
+public class LocalFsSource implements Source {
 
-    public FilesystemSource(String s) {
+    private final String location;
 
+    public LocalFsSource(final String location) {
+        this.location = location;
     }
 
     @Override
