@@ -5,13 +5,13 @@ import java.util.stream.Stream;
 
 public final class ResXeL {
 
-    private final Source[] sources;
+    private final Filesystem[] filesystems;
 
-    public ResXeL(final Source... sources) {
-        this.sources = sources;
+    public ResXeL(final Filesystem... filesystems) {
+        this.filesystems = filesystems;
     }
 
     public Stream<Resource> stream() {
-        return Arrays.stream(sources).flatMap(Source::stream);
+        return Arrays.stream(filesystems).flatMap(Filesystem::stream);
     }
 }

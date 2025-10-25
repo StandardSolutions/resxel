@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 /**
  * Retrieves resources based on their origins.
  */
-public interface Source {
+public interface Filesystem {
 
 //    /**
 //     * Reads and retrieves a resource from the specified origin.
