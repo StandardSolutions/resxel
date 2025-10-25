@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.localfs;
+package com.stdsolutions.resxel.local;
 
 import com.stdsolutions.resxel.Resource;
 import org.junit.jupiter.api.Test;
@@ -10,19 +10,19 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-class LocalFsSourceTest {
+class LocalFilesystemTest {
 
     @Test
     void stream() throws URISyntaxException, IOException {
         // Arrange
-        URL resource = getClass().getClassLoader().getResource("filesystem");
+        URL resource = getClass().getClassLoader().getResource("local");
         Path path = Path.of("");
         if (resource != null) {
             path = Paths.get(resource.toURI());
         }
 
         // Act
-        LocalFsSource source = new LocalFsSource(path.toString());
+        LocalFilesystem source = new LocalFilesystem(path.toString());
 
         // Assert
         List<Resource> list = source.stream().toList();

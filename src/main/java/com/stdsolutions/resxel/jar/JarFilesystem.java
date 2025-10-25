@@ -1,13 +1,13 @@
 package com.stdsolutions.resxel.jar;
 
 import com.stdsolutions.resxel.Resource;
-import com.stdsolutions.resxel.Source;
+import com.stdsolutions.resxel.Filesystem;
 
 import java.util.stream.Stream;
 
-public class JarSource implements Source {
+public class JarFilesystem implements Filesystem {
 
-    public JarSource(String path) {
+    public JarFilesystem(String path) {
     }
 
     @Override

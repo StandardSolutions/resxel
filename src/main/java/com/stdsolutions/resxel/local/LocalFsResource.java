@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.localfs;
+package com.stdsolutions.resxel.local;
 
 import com.stdsolutions.resxel.Origin;
 import com.stdsolutions.resxel.Resource;
