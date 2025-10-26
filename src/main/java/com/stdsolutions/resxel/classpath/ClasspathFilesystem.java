@@ -14,7 +14,7 @@ public class ClasspathFilesystem implements Filesystem {
     }
 
     @Override
-    public Stream<Resource> stream() {
+    public Stream<Resource> resources() {
         return Stream.empty();
     }
 }

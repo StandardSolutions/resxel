@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class JarFilesystemTest {
 
     @Test
-    void stream() throws Exception {
+    void resources() throws Exception {
         URL jarFileUrl = Thread.currentThread().getContextClassLoader().getResource("jar/resxel.jar");
 
         String protocol = "";

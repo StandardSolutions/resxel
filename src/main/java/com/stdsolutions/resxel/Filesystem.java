@@ -12,5 +12,5 @@ public interface Filesystem {
 //     */
 //    Resource read(Origin origin);
 
-    Stream<Resource> stream();
+    Stream<Resource> resources();
 }

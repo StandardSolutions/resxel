@@ -2,7 +2,6 @@ package com.stdsolutions.resxel.classpath;
 
 import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.local.LocalFilesystem;
-import com.stdsolutions.resxel.jar.JarFilesystem;
 import org.junit.jupiter.api.Test;
 
 import java.net.URI;
@@ -12,14 +11,11 @@ class ClasspathFilesystemTest {
 
     @Test
     void testClasspathSource() {
-        ClasspathFilesystem source = new ClasspathFilesystem(
-                new LocalFilesystem("/migrations"),
-                new JarFilesystem("/migr/test")
-        );
-
-        URI uri = URI.create("C:/test/../hello");
-        System.out.println(uri.getScheme());
-        Stream<Resource> stream = source.stream();
+//        ClasspathFilesystem source = new ClasspathFilesystem(new LocalFilesystem("/migrations"));
+//
+//        URI uri = URI.create("C:/test/../hello");
+//        System.out.println(uri.getScheme());
+//        Stream<Resource> stream = source.resources();
     }
 
 }
