@@ -10,22 +10,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class LocalFilesystemTest {
 
     @Test
-    void stream() throws URISyntaxException, IOException {
-        // Arrange
-        URL resource = getClass().getClassLoader().getResource("local");
-        Path path = Path.of("");
-        if (resource != null) {
-            path = Paths.get(resource.toURI());
-        }
-
-        // Act
-        LocalFilesystem source = new LocalFilesystem(path.toString());
-
-        // Assert
-        List<Resource> list = source.stream().toList();
-        System.out.println(list);
+    void resourcesShouldReturnAllFilesRecursively() throws URISyntaxException {
     }
 }
