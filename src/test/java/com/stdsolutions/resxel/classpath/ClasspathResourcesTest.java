@@ -1,13 +1,8 @@
 package com.stdsolutions.resxel.classpath;
 
-import com.stdsolutions.resxel.Resource;
-import com.stdsolutions.resxel.local.LocalFilesystem;
 import org.junit.jupiter.api.Test;
 
-import java.net.URI;
-import java.util.stream.Stream;
-
-class ClasspathFilesystemTest {
+class ClasspathResourcesTest {
 
     @Test
     void testClasspathSource() {
