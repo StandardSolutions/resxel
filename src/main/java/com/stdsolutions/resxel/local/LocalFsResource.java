@@ -4,6 +4,7 @@ import com.stdsolutions.resxel.Origin;
 import com.stdsolutions.resxel.Resource;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -13,6 +14,10 @@ public class LocalFsResource implements Resource {
 
     public LocalFsResource(final Path path) {
         this.path = path;
+    }
+
+    public LocalFsResource(URL url) {
+        this.path = Path.of(url.toString());
     }
 
     @Override

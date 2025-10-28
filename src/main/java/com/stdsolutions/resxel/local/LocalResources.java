@@ -1,6 +1,6 @@
 package com.stdsolutions.resxel.local;
 
-import com.stdsolutions.resxel.Filesystem;
+import com.stdsolutions.resxel.Resources;
 import com.stdsolutions.resxel.ResPath;
 import com.stdsolutions.resxel.Resource;
 
@@ -10,11 +10,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-public class LocalFilesystem implements Filesystem {
+public class LocalResources implements Resources {
 
     private final ResPath path;
 
-    public LocalFilesystem(final ResPath path) {
+    public LocalResources(final ResPath path) {
         this.path = path;
     }
 
