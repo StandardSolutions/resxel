@@ -16,7 +16,7 @@ public class FileResource implements Resource {
         this.path = path;
     }
 
-    public FileResource(URL url) {
+    public FileResource(final URL url) {
         this.path = Path.of(url.toString());
     }
 

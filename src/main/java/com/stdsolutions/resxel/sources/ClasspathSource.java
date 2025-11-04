@@ -1,8 +1,8 @@
 package com.stdsolutions.resxel.sources;
 
+import com.stdsolutions.resxel.ProtocolHandlers;
 import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.Source;
-import com.stdsolutions.resxel.resources.FileResource;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,8 +17,11 @@ public class ClasspathSource implements Source {
 
     private final List<Resource> resources;
 
-    public ClasspathSource(String path) {
+    private final ProtocolHandlers handlers;
+
+    public ClasspathSource(String path, ProtocolHandlers handlers) {
         this.path = path;
+        this.handlers = handlers;
         this.resources = new ArrayList<>();
     }
 
@@ -28,8 +31,8 @@ public class ClasspathSource implements Source {
         Enumeration<URL> classpathResources = Thread.currentThread().getContextClassLoader().getResources(path);
         while (classpathResources.hasMoreElements()) {
             URL url = classpathResources.nextElement();
-            FileResource fileResource = new FileResource(url);
-            resources.add(fileResource);
+            handlers.handle(url)
+                    .ifPresent(resources::add);
         }
         return resources.stream();
     }
