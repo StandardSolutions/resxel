@@ -7,7 +7,7 @@ import java.net.URLClassLoader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class JarResourcesTest {
+class JarSourceTest {
 
     @Test
     void resources() throws Exception {

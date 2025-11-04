@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.local;
+package com.stdsolutions.resxel.resources;
 
 import com.stdsolutions.resxel.Origin;
 import com.stdsolutions.resxel.Resource;
@@ -8,15 +8,15 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class LocalFsResource implements Resource {
+public class FileResource implements Resource {
 
     private final Path path;
 
-    public LocalFsResource(final Path path) {
+    public FileResource(final Path path) {
         this.path = path;
     }
 
-    public LocalFsResource(URL url) {
+    public FileResource(URL url) {
         this.path = Path.of(url.toString());
     }
 
