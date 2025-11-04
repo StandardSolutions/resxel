@@ -1,8 +1,8 @@
-package com.stdsolutions.resxel.classpath;
+package com.stdsolutions.resxel.sources;
 
 import com.stdsolutions.resxel.Resource;
-import com.stdsolutions.resxel.Resources;
-import com.stdsolutions.resxel.local.LocalFsResource;
+import com.stdsolutions.resxel.Source;
+import com.stdsolutions.resxel.resources.FileResource;
 
 import java.io.IOException;
 import java.net.URL;
@@ -11,13 +11,13 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class ClasspathResources implements Resources {
+public class ClasspathSource implements Source {
 
     private final String path;
 
     private final List<Resource> resources;
 
-    public ClasspathResources(String path) {
+    public ClasspathSource(String path) {
         this.path = path;
         this.resources = new ArrayList<>();
     }
@@ -28,8 +28,8 @@ public class ClasspathResources implements Resources {
         Enumeration<URL> classpathResources = Thread.currentThread().getContextClassLoader().getResources(path);
         while (classpathResources.hasMoreElements()) {
             URL url = classpathResources.nextElement();
-            LocalFsResource localFsResource = new LocalFsResource(url);
-            resources.add(localFsResource);
+            FileResource fileResource = new FileResource(url);
+            resources.add(fileResource);
         }
         return resources.stream();
     }

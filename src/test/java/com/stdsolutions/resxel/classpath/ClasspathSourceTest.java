@@ -2,7 +2,7 @@ package com.stdsolutions.resxel.classpath;
 
 import org.junit.jupiter.api.Test;
 
-class ClasspathResourcesTest {
+class ClasspathSourceTest {
 
     @Test
     void testClasspathSource() {
