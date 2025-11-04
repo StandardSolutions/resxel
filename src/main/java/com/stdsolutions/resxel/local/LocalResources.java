@@ -22,15 +22,14 @@ public class LocalResources implements Resources {
     public Stream<Resource> resources() {
         Path rootPath = Paths.get(path.toString());
 
-        Stream<Resource> localResources;
-        try {
-            localResources = Files.walk(rootPath, 1)
+        try (Stream<Path> paths = Files.walk(rootPath, 1)) {
+            return paths
                     .filter(Files::isRegularFile)
-                    .map(LocalFsResource::new);
+                    .<Resource>map(LocalFsResource::new)
+                    .toList()
+                    .stream();
         } catch (IOException e) {
-            localResources = Stream.empty();
+            return Stream.empty();
         }
-
-        return Stream.concat(localResources, Stream.empty());
     }
 }
