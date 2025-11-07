@@ -5,10 +5,17 @@ import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.Source;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class ClasspathSource implements Source {
@@ -30,7 +37,24 @@ public class ClasspathSource implements Source {
 
         Enumeration<URL> classpathResources = Thread.currentThread().getContextClassLoader().getResources(path);
         while (classpathResources.hasMoreElements()) {
+            System.out.println("===============================");
             URL url = classpathResources.nextElement();
+            URI uri;
+            try {
+                uri = url.toURI();
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+            int sep = url.toString().indexOf("!/");
+            String insidePath = url.toString().substring(sep + 1);
+            System.out.println(uri);
+            try (FileSystem fs = FileSystems.newFileSystem(uri, Map.of())) {
+                Path root = fs.getPath(insidePath);
+                try (Stream<Path> stream = Files.walk(root)) {
+                    stream.forEach(System.out::println);
+                }
+            }
+
             handlers.handle(url)
                     .ifPresent(resources::add);
         }
