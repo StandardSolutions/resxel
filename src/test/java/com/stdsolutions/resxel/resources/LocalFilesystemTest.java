@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.net.URISyntaxException;
 
-class LocalFsSourceTest {
+class LocalFilesystemTest {
 
     @Test
     void resourcesShouldReturnAllFilesRecursively() throws URISyntaxException {

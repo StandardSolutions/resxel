@@ -45,11 +45,20 @@ public class ClasspathSource implements Source {
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
             }
-            int sep = url.toString().indexOf("!/");
-            String insidePath = url.toString().substring(sep + 1);
             System.out.println(uri);
-            try (FileSystem fs = FileSystems.newFileSystem(uri, Map.of())) {
-                Path root = fs.getPath(insidePath);
+
+            // Handle different protocols
+            if ("jar".equals(url.getProtocol())) {
+                int sep = url.toString().indexOf("!/");
+                String insidePath = url.toString().substring(sep + 1);
+                try (FileSystem fs = FileSystems.newFileSystem(uri, Map.of())) {
+                    Path root = fs.getPath(insidePath);
+                    try (Stream<Path> stream = Files.walk(root)) {
+                        stream.forEach(System.out::println);
+                    }
+                }
+            } else if ("file".equals(url.getProtocol())) {
+                Path root = Path.of(uri);
                 try (Stream<Path> stream = Files.walk(root)) {
                     stream.forEach(System.out::println);
                 }
