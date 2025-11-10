@@ -1,7 +1,6 @@
 package com.stdsolutions.resxel.filesystems;
 
 import com.stdsolutions.resxel.Source;
-import com.stdsolutions.resxel.ResPath;
 import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.resources.FileResource;
 

@@ -8,7 +8,7 @@ class ResXeLTest {
         // Arrange
 
         // Act
-        ResXeL jar = new ResXeL(new ResPath.Default("jar"));
+        ResXeL jar = new ResXeL();
 
         // Assert
     }
