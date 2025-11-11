@@ -1,6 +1,7 @@
 package com.stdsolutions.resxel;
 
 import java.net.URI;
+import java.net.URL;
 import java.nio.file.Path;
 
 public final class Location {
@@ -10,12 +11,19 @@ public final class Location {
     private final String value;
 
     public Location(final String root, final String dir) {
-        this.value = root == null || dir == null ? DEFAULT_LOCATION : root + "!/" + dir;
+        if (dir != null && dir.startsWith("/")) {
+            this.value = root + "!" + dir;
+        } else {
+            this.value = root + "!/" + dir;
+        }
     }
 
     public Location(final URI uri) {
         this.value = uri == null ? DEFAULT_LOCATION : uri.toString();
+    }
 
+    public Location(final URL url) {
+        this.value = url == null ? DEFAULT_LOCATION : url.toString();
     }
 
     public String scheme() {
