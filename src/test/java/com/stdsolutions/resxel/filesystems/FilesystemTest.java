@@ -1,10 +1,15 @@
 package com.stdsolutions.resxel.filesystems;
 
 import com.stdsolutions.resxel.Filesystem;
+import com.stdsolutions.resxel.Location;
+import com.stdsolutions.resxel.sources.ClasspathThreadSource;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,5 +53,21 @@ class FilesystemTest {
         resources.stream().forEach(System.out::println);
         // Проверяем, что все элементы - это файлы (не директории)
         assertTrue(resources.stream().allMatch(path -> !path.toString().endsWith("/")));
+    }
+
+    @Test
+    void testtesttest() throws Exception {
+        new ClasspathThreadSource("jar").resources()
+                .map(Location::new)
+                .map(Filesystem::new)
+                .map(fs -> {
+                    try {
+                        return fs.resources();
+                    } catch (IOException e) {
+                        return new ArrayList<Path>();
+                    }
+                })
+                .flatMap(Collection::stream)
+                .forEach(System.out::println);
     }
 }

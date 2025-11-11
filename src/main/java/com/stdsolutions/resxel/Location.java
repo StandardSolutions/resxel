@@ -35,12 +35,19 @@ public final class Location {
     }
 
     public Path root() {
+        if ("file".equals(this.scheme())) {
+            return Path.of(this.value);
+        }
+
         final int idx = value.indexOf("!/");
         final String root = idx == -1 ? value : value.substring(0, idx);
         return Path.of(root);
     }
 
     public String dir() {
+        if ("file".equals(this.scheme())) {
+            return value.substring(5);
+        }
         final int idx = value.indexOf("!/");
         if (idx == -1) {
             return "/";

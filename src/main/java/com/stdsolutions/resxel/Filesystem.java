@@ -6,6 +6,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Stream;
 
 public final class Filesystem {
 
@@ -24,9 +25,13 @@ public final class Filesystem {
     }
 
     public List<Path> resources(int maxDepth) throws IOException {
-        try (FileSystem fs = FileSystems.newFileSystem(location.root())) {
+
+        try (FileSystem fs = "file".equals(location.scheme())
+                ? FileSystems.getDefault()
+                : FileSystems.newFileSystem(location.root())) {
+
             Path root = fs.getPath(location.dir());
-            try (var paths = Files.walk(root, maxDepth)) {
+            try (Stream<Path> paths = Files.walk(root, maxDepth)) {
                 return paths
                         .filter(Files::isRegularFile)
                         .toList();
