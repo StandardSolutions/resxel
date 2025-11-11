@@ -1,5 +1,6 @@
 package com.stdsolutions.resxel.filesystems;
 
+import com.stdsolutions.resxel.Filesystem;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.NoSuchFileException;
@@ -8,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JarFilesystemTest {
+class FilesystemTest {
 
     @Test
     void shouldReturnResourcesFromJar() throws Exception {
@@ -18,8 +19,8 @@ class JarFilesystemTest {
                 .getResource("jar/resxel.jar")
                 .toURI()).toString();
 
-        JarFilesystem jarFilesystem = new JarFilesystem(jarPath);
-        List<Path> resources = jarFilesystem.resources();
+        Filesystem filesystem = new Filesystem(jarPath);
+        List<Path> resources = filesystem.resources();
 
         // Проверяем, что ресурсы найдены
         assertNotNull(resources);
@@ -29,10 +30,10 @@ class JarFilesystemTest {
     @Test
     void shouldThrowExceptionWhenJarNotFound() {
         String nonExistentPath = "/path/to/nonexistent.jar";
-        JarFilesystem jarFilesystem = new JarFilesystem(nonExistentPath);
+        Filesystem filesystem = new Filesystem(nonExistentPath);
 
         // Проверяем, что выбрасывается NoSuchFileException
-        assertThrows(NoSuchFileException.class, jarFilesystem::resources);
+        assertThrows(NoSuchFileException.class, filesystem::resources);
     }
 
     @Test
@@ -42,8 +43,8 @@ class JarFilesystemTest {
                 .getResource("jar/resxel.jar")
                 .toURI()).toString();
 
-        JarFilesystem jarFilesystem = new JarFilesystem(jarPath);
-        List<Path> resources = jarFilesystem.resources();
+        Filesystem filesystem = new Filesystem(jarPath);
+        List<Path> resources = filesystem.resources();
         resources.stream().forEach(System.out::println);
         // Проверяем, что все элементы - это файлы (не директории)
         assertTrue(resources.stream().allMatch(path -> !path.toString().endsWith("/")));
