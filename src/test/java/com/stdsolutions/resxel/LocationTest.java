@@ -125,5 +125,14 @@ class LocationTest {
         assertEquals("/null", location.dir());
     }
 
-    // file:/home/sergei/projects/stadnardsolutions/resxel/target/test-classes/jar
+    @Test
+    void shouldHandleJarWithRoot() {
+        URI uri = URI.create("/home/sergei/projects/stadnardsolutions/resxel/target/test-classes/jar/resxel.jar!/");
+        Location location = new Location(uri);
+
+        assertEquals("jar", location.scheme());
+        assertEquals("/home/sergei/projects/stadnardsolutions/resxel/target/test-classes/jar/resxel.jar", location.root());
+        assertEquals("/", location.dir());
+    }
+
 }
