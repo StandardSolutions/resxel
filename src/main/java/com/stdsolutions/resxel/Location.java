@@ -10,12 +10,8 @@ public final class Location {
 
     private final String value;
 
-    public Location(final String root, final String dir) {
-        if (dir != null && dir.startsWith("/")) {
-            this.value = root + "!" + dir;
-        } else {
-            this.value = root + "!/" + dir;
-        }
+    public Location(final String location) {
+        this.value = location == null ? DEFAULT_LOCATION : location;
     }
 
     public Location(final URI uri) {
