@@ -12,18 +12,10 @@ class LocationTest {
 
     @Test
     void shouldCreateLocationFromRootAndDir() {
-        Location location = new Location("file:/home/user", "documents");
+        Location location = new Location("file:/home/user/documents");
 
         assertEquals("file", location.scheme());
-        assertEquals("/documents", location.dir());
-    }
-
-    @Test
-    void shouldCreateLocationFromRootAndDirWithLeadingSlash() {
-        Location location = new Location("file:/home/user", "/documents");
-
-        assertEquals("file", location.scheme());
-        assertEquals("/documents", location.dir());
+        assertEquals("/home/user/documents", location.dir());
     }
 
     @Test
@@ -61,22 +53,15 @@ class LocationTest {
     }
 
     @Test
-    void shouldExtractSchemeFromLocation() {
-        Location location = new Location("file:/home/user", "/documents");
-
-        assertEquals("file", location.scheme());
-    }
-
-    @Test
     void shouldReturnDefaultSchemeWhenInvalid() {
-        Location location = new Location("x", "y");
+        Location location = new Location("x/y");
 
         assertEquals("file", location.scheme());
     }
 
     @Test
     void shouldExtractRootPath() {
-        Location location = new Location("jar:file:/home/user/lib.jar", "/META-INF");
+        Location location = new Location("jar:file:/home/user/lib.jar!/META-INF");
 
         Path root = location.root();
         assertNotNull(root);
@@ -85,7 +70,7 @@ class LocationTest {
 
     @Test
     void shouldExtractDirPath() {
-        Location location = new Location("jar:file:/home/user/lib.jar", "/META-INF/resources");
+        Location location = new Location("jar:file:/home/user/lib.jar!/META-INF/resources");
 
         assertEquals("/META-INF/resources", location.dir());
     }
@@ -115,14 +100,6 @@ class LocationTest {
 
         assertEquals("http", location.scheme());
         assertEquals("/data", location.dir());
-    }
-
-    @Test
-    void shouldHandleNullDirInConstructor() {
-        Location location = new Location("file:/home/user", null);
-
-        assertEquals("file", location.scheme());
-        assertEquals("/null", location.dir());
     }
 
     @Test

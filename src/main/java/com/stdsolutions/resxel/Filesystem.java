@@ -17,7 +17,7 @@ public final class Filesystem {
     }
 
     public Filesystem(final String root) {
-        this(new Location(root, "/"));
+        this(new Location(root));
     }
 
     public List<Path> resources() throws IOException {
