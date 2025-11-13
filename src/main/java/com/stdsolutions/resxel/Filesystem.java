@@ -28,9 +28,9 @@ public final class Filesystem {
 
         try (FileSystem fs = "file".equals(location.scheme())
                 ? FileSystems.getDefault()
-                : FileSystems.newFileSystem(location.root())) {
+                : FileSystems.newFileSystem(location.source())) {
 
-            Path root = fs.getPath(location.dir());
+            Path root = fs.getPath(location.path());
             try (Stream<Path> paths = Files.walk(root, maxDepth)) {
                 return paths
                         .filter(Files::isRegularFile)

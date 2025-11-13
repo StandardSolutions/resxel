@@ -23,14 +23,14 @@ public final class Location {
     }
 
     public String scheme() {
-        final int idx = value.indexOf(":/");
+        final int idx = value.indexOf(":");
         if (idx < 2) {
             return "file";
         }
         return value.substring(0, idx);
     }
 
-    public Path root() {
+    public Path source() {
         if ("file".equals(this.scheme())) {
             return Path.of(this.value);
         }
@@ -40,7 +40,7 @@ public final class Location {
         return Path.of(root);
     }
 
-    public String dir() {
+    public String path() {
         if ("file".equals(this.scheme())) {
             return value.substring(5);
         }
