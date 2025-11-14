@@ -1,11 +1,10 @@
-package com.stdsolutions.resxel.filesystems;
+package com.stdsolutions.resxel.filesystem;
 
-import com.stdsolutions.resxel.Filesystem;
-import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.sources.ClasspathThreadSource;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -58,7 +57,7 @@ class FilesystemTest {
     @Test
     void testtesttest() throws Exception {
         new ClasspathThreadSource("jar").resources()
-                .map(Location::new)
+                .map(URL::toString)
                 .map(Filesystem::new)
                 .map(fs -> {
                     try {

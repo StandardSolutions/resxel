@@ -1,10 +1,8 @@
-package com.stdsolutions.resxel;
+package com.stdsolutions.resxel.filesystem;
 
-import java.net.URI;
-import java.net.URL;
 import java.nio.file.Path;
 
-public final class Location {
+final class Location {
 
     private static final String DEFAULT_LOCATION = "null:/";
 
@@ -12,14 +10,6 @@ public final class Location {
 
     public Location(final String location) {
         this.value = location == null ? DEFAULT_LOCATION : location;
-    }
-
-    public Location(final URI uri) {
-        this.value = uri == null ? DEFAULT_LOCATION : uri.toString();
-    }
-
-    public Location(final URL url) {
-        this.value = url == null ? DEFAULT_LOCATION : url.toString();
     }
 
     public String scheme() {
@@ -32,7 +22,7 @@ public final class Location {
 
     public Path source() {
         if ("file".equals(this.scheme())) {
-            return Path.of(this.value);
+            return Path.of("");
         }
 
         final int idx = value.indexOf("!/");
@@ -42,7 +32,8 @@ public final class Location {
 
     public String path() {
         if ("file".equals(this.scheme())) {
-            return value.substring(5);
+            final int idx = !value.contains(":") ? 0 : value.indexOf(":");
+            return value.substring(idx);
         }
         final int idx = value.indexOf("!/");
         if (idx == -1) {
