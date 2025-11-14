@@ -1,12 +1,11 @@
-package com.stdsolutions.resxel;
+package com.stdsolutions.resxel.filesystem;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.net.URI;
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LocationTest {
 
@@ -17,8 +16,7 @@ class LocationTest {
     @Test
     @DisplayName("handle file located on filesystem")
     void shouldHandleJarWithSource() {
-        URI uri = URI.create("/home/user/path/resxel.jar");
-        Location location = new Location(uri);
+        Location location = new Location("/home/user/path/resxel.jar");
 
         assertEquals("file", location.scheme());
         assertEquals(Path.of(""), location.source());

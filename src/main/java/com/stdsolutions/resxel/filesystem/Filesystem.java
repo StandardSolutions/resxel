@@ -1,6 +1,8 @@
-package com.stdsolutions.resxel;
+package com.stdsolutions.resxel.filesystem;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -12,12 +14,16 @@ public final class Filesystem {
 
     private final Location location;
 
-    public Filesystem(final Location location) {
-        this.location = location;
+    public Filesystem(final String root) {
+        this.location = new Location(root);
     }
 
-    public Filesystem(final String root) {
-        this(new Location(root));
+    public Filesystem(final URI uri) {
+        this.location = new Location(uri == null ? null : uri.toString());
+    }
+
+    public Filesystem(final URL url) {
+        this.location = new Location(url == null ? null : url.toString());
     }
 
     public List<Path> resources() throws IOException {
