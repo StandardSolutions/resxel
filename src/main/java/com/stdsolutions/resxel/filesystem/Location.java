@@ -32,7 +32,7 @@ final class Location {
 
     public String path() {
         if ("file".equals(this.scheme())) {
-            final int idx = !value.contains(":") ? 0 : value.indexOf(":");
+            final int idx = value.contains(":") ? value.indexOf(":") + 1 : 0;
             return value.substring(idx);
         }
         final int idx = value.indexOf("!/");
