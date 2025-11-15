@@ -14,9 +14,19 @@ class LocationTest {
     // ===================================
 
     @Test
-    @DisplayName("handle file located on filesystem")
-    void shouldHandleJarWithSource() {
+    @DisplayName("handle file location on filesystem without scheme")
+    void handleFileLocationWithoutScheme() {
         Location location = new Location("/home/user/path/resxel.jar");
+
+        assertEquals("file", location.scheme());
+        assertEquals(Path.of(""), location.source());
+        assertEquals("/home/user/path/resxel.jar", location.path());
+    }
+
+    @Test
+    @DisplayName("handle file location on filesystem with scheme")
+    void handleFileLocationWithScheme() {
+        Location location = new Location("file:/home/user/path/resxel.jar");
 
         assertEquals("file", location.scheme());
         assertEquals(Path.of(""), location.source());
