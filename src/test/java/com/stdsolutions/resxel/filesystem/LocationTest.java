@@ -14,8 +14,8 @@ class LocationTest {
     // ===================================
 
     @Test
-    @DisplayName("handle file location on filesystem without scheme")
-    void handleFileLocationWithoutScheme() {
+    @DisplayName("handle absolute file location on filesystem without scheme")
+    void handleAbsoluteFileLocationWithoutScheme() {
         Location location = new Location("/home/user/path/resxel.jar");
 
         assertEquals("file", location.scheme());
@@ -24,8 +24,8 @@ class LocationTest {
     }
 
     @Test
-    @DisplayName("handle file location on filesystem with scheme")
-    void handleFileLocationWithScheme() {
+    @DisplayName("handle absolute file location on filesystem with scheme")
+    void handleAbsoluteFileLocationWithScheme() {
         Location location = new Location("file:/home/user/path/resxel.jar");
 
         assertEquals("file", location.scheme());
@@ -33,34 +33,27 @@ class LocationTest {
         assertEquals("/home/user/path/resxel.jar", location.path());
     }
 
-//    @Test
-//    void shouldHandleFileWithoutJar() {
-//        URI uri = URI.create("/home/user/documents/data.txt");
-//        Location location = new Location(uri);
-//
-//        assertEquals("file", location.scheme());
-//        assertEquals("/", location.root());
-//        assertEquals("/home/user/documents/data.txt", location.dir());
-//    }
-//
-//    @Test
-//    void shouldHandleRelativeFile() {
-//        URI uri = URI.create("relative/path/to/file.txt");
-//        Location location = new Location(uri);
-//
-//        assertEquals("file", location.scheme());
-//        assertEquals("/", location.root());
-//        assertEquals("relative/path/to/file.txt", location.dir());
-//    }
-//
-//
-//    @Test
-//    void shouldCreateLocationFromRootAndDir() {
-//        Location location = new Location("file:/home/user/documents");
-//
-//        assertEquals("file", location.scheme());
-//        assertEquals("/home/user/documents", location.dir());
-//    }
+    @Test
+    @DisplayName("handle relative file location on filesystem without scheme")
+    void handleRelativeFileLocationWithoutScheme() {
+        Location location = new Location("relative/path/to/file.txt");
+
+        assertEquals("file", location.scheme());
+        assertEquals(Path.of(""), location.source());
+        assertEquals("relative/path/to/file.txt", location.path());
+    }
+
+    @Test
+    @DisplayName("handle relative file location on filesystem with scheme")
+    void handleRelativeFileLocationWithScheme() {
+        Location location = new Location("file:relative/path/to/file.txt");
+
+        assertEquals("file", location.scheme());
+        assertEquals(Path.of(""), location.source());
+        assertEquals("relative/path/to/file.txt", location.path());
+    }
+
+
 //
 //    @Test
 //    void shouldCreateLocationFromURI() throws Exception {
