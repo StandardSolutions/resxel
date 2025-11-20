@@ -29,6 +29,6 @@ final class Location {
 
     public String path() {
         final ParsedScheme scheme = new ParsedScheme(value);
-        return value.substring(scheme.cutPoint());
+        return value.substring(scheme.cutIndex());
     }
 }
