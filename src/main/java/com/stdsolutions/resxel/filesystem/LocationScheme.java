@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  *
  * @see <a href="https://www.rfc-editor.org/rfc/rfc3986#section-3.1">RFC 3986 Section 3.1</a>
  */
-class ParsedScheme {
+final class LocationScheme {
 
     /**
      * Pattern matching URI schemes according to RFC 3986 where scheme as:
@@ -32,19 +32,19 @@ class ParsedScheme {
      *
      * @param location the resource location string to parse
      */
-    ParsedScheme(final String location) {
+    LocationScheme(final String location) {
         this.location = location;
     }
 
     /**
-     * Returns the URI scheme.
+     * Returns the URI scheme as string.
      * <p>
      * If no valid scheme is found in the location string, returns "file" as the default.
      * </p>
      *
      * @return the URI scheme (e.g., "http", "https", "jar") or "file" if none found
      */
-    String value() {
+    String asString() {
         final Matcher matcher = SCHEME_PATTERN.matcher(location);
         return matcher.find() ? matcher.group(1) : "file";
     }

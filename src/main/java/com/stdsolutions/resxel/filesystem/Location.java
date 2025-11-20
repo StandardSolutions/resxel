@@ -13,12 +13,12 @@ final class Location {
     }
 
     public String scheme() {
-        return new ParsedScheme(value).value();
+        return new LocationScheme(value).asString();
     }
 
     public Path source() {
-        final ParsedScheme scheme = new ParsedScheme(value);
-        if ("file".equals(scheme.value())) {
+        final LocationScheme scheme = new LocationScheme(value);
+        if ("file".equals(scheme.asString())) {
             return Path.of("");
         }
 
@@ -28,7 +28,7 @@ final class Location {
     }
 
     public String path() {
-        final ParsedScheme scheme = new ParsedScheme(value);
+        final LocationScheme scheme = new LocationScheme(value);
         return value.substring(scheme.cutIndex());
     }
 }
