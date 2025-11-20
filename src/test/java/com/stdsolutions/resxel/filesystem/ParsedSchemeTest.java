@@ -29,7 +29,7 @@ class ParsedSchemeTest {
 
         assertAll(
                 () -> assertEquals(expectedScheme, parsedScheme.value()),
-                () -> assertEquals(expectedLength, parsedScheme.cutPoint())
+                () -> assertEquals(expectedLength, parsedScheme.cutIndex())
         );
     }
 }
