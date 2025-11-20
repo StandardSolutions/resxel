@@ -13,15 +13,12 @@ final class Location {
     }
 
     public String scheme() {
-        final int idx = value.indexOf(":");
-        if (idx < 2) {
-            return "file";
-        }
-        return value.substring(0, idx);
+        return new ParsedScheme(value).value();
     }
 
     public Path source() {
-        if ("file".equals(this.scheme())) {
+        final ParsedScheme scheme = new ParsedScheme(value);
+        if ("file".equals(scheme.value())) {
             return Path.of("");
         }
 
@@ -31,14 +28,7 @@ final class Location {
     }
 
     public String path() {
-        if ("file".equals(this.scheme())) {
-            final int idx = value.contains(":") ? value.indexOf(":") + 1 : 0;
-            return value.substring(idx);
-        }
-        final int idx = value.indexOf("!/");
-        if (idx == -1) {
-            return "/";
-        }
-        return value.substring(idx + 1);
+        final ParsedScheme scheme = new ParsedScheme(value);
+        return value.substring(scheme.cutPoint());
     }
 }
