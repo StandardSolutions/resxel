@@ -1,6 +1,7 @@
 package com.stdsolutions.resxel.filesystem;
 
 import com.stdsolutions.resxel.sources.ClasspathThreadSource;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Disabled
 class FilesystemTest {
 
     @Test

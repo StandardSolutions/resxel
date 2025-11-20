@@ -1,7 +1,7 @@
 package com.stdsolutions.resxel.filesystem;
-
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.nio.file.Path;
 
@@ -13,45 +13,25 @@ class LocationTest {
     // ---------- REGULAR FILES ----------
     // ===================================
 
-    @Test
-    @DisplayName("handle absolute file location on filesystem without scheme")
-    void handleAbsoluteFileLocationWithoutScheme() {
-        Location location = new Location("/home/user/path/resxel.jar");
+    @ParameterizedTest
+    @CsvSource({
+            "/absolute/path/to/resxel.jar, /absolute/path/to/resxel.jar",
+            "file:/absolute/path/to/resxel.jar, /absolute/path/to/resxel.jar",
+            "relative/path/to/file.txt, relative/path/to/file.txt",
+            "file:relative/path/to/file.txt, relative/path/to/file.txt",
+            "file:any!/symbols?q, any!/symbols?q",
+            "file:jar:any!/symbols?q, jar:any!/symbols?q",
+            "C:/jar:any!/symbols?q, C:/jar:any!/symbols?q",
+    })
+    @DisplayName("handle file locations on filesystem")
+    void handleFileLocations(String input, String expectedPath) {
+        Location location = new Location(input);
 
         assertEquals("file", location.scheme());
         assertEquals(Path.of(""), location.source());
-        assertEquals("/home/user/path/resxel.jar", location.path());
+        assertEquals(expectedPath, location.path());
     }
 
-    @Test
-    @DisplayName("handle absolute file location on filesystem with scheme")
-    void handleAbsoluteFileLocationWithScheme() {
-        Location location = new Location("file:/home/user/path/resxel.jar");
-
-        assertEquals("file", location.scheme());
-        assertEquals(Path.of(""), location.source());
-        assertEquals("/home/user/path/resxel.jar", location.path());
-    }
-
-    @Test
-    @DisplayName("handle relative file location on filesystem without scheme")
-    void handleRelativeFileLocationWithoutScheme() {
-        Location location = new Location("relative/path/to/file.txt");
-
-        assertEquals("file", location.scheme());
-        assertEquals(Path.of(""), location.source());
-        assertEquals("relative/path/to/file.txt", location.path());
-    }
-
-    @Test
-    @DisplayName("handle relative file location on filesystem with scheme")
-    void handleRelativeFileLocationWithScheme() {
-        Location location = new Location("file:relative/path/to/file.txt");
-
-        assertEquals("file", location.scheme());
-        assertEquals(Path.of(""), location.source());
-        assertEquals("relative/path/to/file.txt", location.path());
-    }
 
 
 //
