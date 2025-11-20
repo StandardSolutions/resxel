@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ParsedSchemeTest {
+class LocationSchemeTest {
 
     @ParameterizedTest
     @CsvSource({
@@ -24,12 +24,12 @@ class ParsedSchemeTest {
             "'', file, 0"
     })
     @DisplayName("should extract scheme value from location")
-    void value(String location, String expectedScheme, int expectedLength) {
-        ParsedScheme parsedScheme = new ParsedScheme(location);
+    void asString(String location, String expectedScheme, int expectedLength) {
+        LocationScheme locationScheme = new LocationScheme(location);
 
         assertAll(
-                () -> assertEquals(expectedScheme, parsedScheme.value()),
-                () -> assertEquals(expectedLength, parsedScheme.cutIndex())
+                () -> assertEquals(expectedScheme, locationScheme.asString()),
+                () -> assertEquals(expectedLength, locationScheme.cutIndex())
         );
     }
 }
