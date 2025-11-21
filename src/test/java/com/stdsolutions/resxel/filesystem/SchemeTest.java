@@ -1,13 +1,15 @@
 package com.stdsolutions.resxel.filesystem;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class LocationSchemeTest {
+class SchemeTest {
 
     @ParameterizedTest
     @CsvSource({
@@ -24,12 +26,18 @@ class LocationSchemeTest {
             "'', file, 0"
     })
     @DisplayName("should extract scheme value from location")
-    void asString(String location, String expectedScheme, int expectedLength) {
-        LocationScheme locationScheme = new LocationScheme(location);
+    void asStringSchemeValue(String location, String expectedScheme, int expectedLength) {
+        Location.Scheme scheme = new Location.Scheme(location);
 
         assertAll(
-                () -> assertEquals(expectedScheme, locationScheme.asString()),
-                () -> assertEquals(expectedLength, locationScheme.cutIndex())
+                () -> assertEquals(expectedScheme, scheme.asString()),
+                () -> assertEquals(expectedLength, scheme.cutIndex())
         );
+    }
+
+    @Test
+    @DisplayName("should throw NullPointerException for null location")
+    void shouldThrowNpeForNullLocation() {
+        assertThrows(NullPointerException.class, () -> new Location.Scheme(null));
     }
 }
