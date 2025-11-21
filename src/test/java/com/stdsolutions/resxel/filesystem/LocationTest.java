@@ -24,11 +24,26 @@ class LocationTest {
             "C:/jar:any!/symbols?q, C:/jar:any!/symbols?q",
     })
     @DisplayName("handle file locations on filesystem")
-    void handleFileLocations(String input, String expectedPath) {
+    void handleFileLocationsOnFilesystem(String input, String expectedPath) {
         Location location = new Location(input);
 
         assertEquals("file", location.scheme());
         assertEquals(Path.of(""), location.source());
+        assertEquals(expectedPath, location.path());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "jar:file:/path/to/resxel.jar, jar:file:/absolute/path/to/resxel.jar, /",
+            "jar:file:/path/to/resxel.jar!/, jar:file:/absolute/path/to/resxel.jar, /",
+            "jar:file:/path/to/resxel.jar!/to/file.txt, jar:file:/absolute/path/to/resxel.jar, /to/file.txt",
+    })
+    @DisplayName("handle file locations on jar")
+    void handleFileLocationsOnJar(String input, String expectedSource, String expectedPath) {
+        Location location = new Location(input);
+
+        assertEquals("jar:file", location.scheme());
+        assertEquals(Path.of(expectedSource), location.source());
         assertEquals(expectedPath, location.path());
     }
 
