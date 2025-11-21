@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.filesystem;
+package com.stdsolutions.resxel.location;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ class SchemeTest {
     @ParameterizedTest
     @CsvSource({
             "file:/absolute/path, file, 5",
-            "jar:file:/path/to/file.jar, jar, 4",
+            "jar:file:/path/to/file.jar, jar:file, 9",
             "http://example.com, http, 5",
             "https://example.com, https, 6",
             "/absolute/path, file, 0",
@@ -27,7 +27,7 @@ class SchemeTest {
     })
     @DisplayName("should extract scheme value from location")
     void asStringSchemeValue(String location, String expectedScheme, int expectedLength) {
-        Location.Scheme scheme = new Location.Scheme(location);
+        LocationOf.Scheme scheme = new LocationOf.Scheme(location);
 
         assertAll(
                 () -> assertEquals(expectedScheme, scheme.asString()),
@@ -38,6 +38,6 @@ class SchemeTest {
     @Test
     @DisplayName("should throw NullPointerException for null location")
     void shouldThrowNpeForNullLocation() {
-        assertThrows(NullPointerException.class, () -> new Location.Scheme(null));
+        assertThrows(NullPointerException.class, () -> new LocationOf.Scheme(null));
     }
 }

@@ -1,38 +1,45 @@
-package com.stdsolutions.resxel.filesystem;
+package com.stdsolutions.resxel.location;
+
+import com.stdsolutions.resxel.Location;
 
 import java.nio.file.Path;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-final class Location {
+public final class LocationOf implements Location {
 
-    private static final String DEFAULT_LOCATION = "null:/";
+    private static final Map<String, Function<String, Location>> LOCATION_MAP = Map.of(
+            "jar:file", JarFileLocation::new,
+            "file", FileLocation::new
+    );
 
-    private final String value;
+    private final Location location;
 
-    public Location(final String location) {
-        this.value = location == null ? DEFAULT_LOCATION : location;
+
+    public LocationOf(final String location) {
+
+        final Scheme scheme = new Scheme(location);
+        this.location = LOCATION_MAP
+                .getOrDefault(scheme.asString(), UnexpectedLocation::new)
+                .apply(location);
     }
 
+    @Override
     public String scheme() {
-        return new Scheme(value).asString();
+        return location.scheme();
     }
 
+    @Override
     public Path source() {
-        final Scheme scheme = new Scheme(value);
-        if ("file".equals(scheme.asString())) {
-            return Path.of("");
-        }
-
-        final int idx = value.indexOf("!/");
-        final String root = idx == -1 ? value : value.substring(0, idx);
-        return Path.of(root);
+        return location.source();
     }
 
+    @Override
     public String path() {
-        final Scheme scheme = new Scheme(value);
-        return value.substring(scheme.cutIndex());
+        return location.path();
     }
 
     /**
@@ -52,7 +59,7 @@ final class Location {
          * {@code ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )}. The pattern requires
          * at least 2 characters to distinguish from Windows drive letters.
          */
-        private static final Pattern SCHEME_PATTERN = Pattern.compile("^([a-zA-Z][a-zA-Z0-9+\\-.]+):");
+        private static final Pattern SCHEME_PATTERN = Pattern.compile("(^[a-zA-Z][a-zA-Z0-9+.-]+):");
 
         /**
          * The original location string to parse.
@@ -78,8 +85,19 @@ final class Location {
          * @return the URI scheme (e.g., "http", "https", "jar") or "file" if none found
          */
         String asString() {
-            final Matcher matcher = SCHEME_PATTERN.matcher(location);
-            return matcher.find() ? matcher.group(1) : "file";
+            String rem = location;
+            while (true) {
+                final Matcher matcher = SCHEME_PATTERN.matcher(rem);
+                if (matcher.find()) {
+                    rem = rem.substring(matcher.end());
+                } else {
+                    break;
+                }
+            }
+            if (rem.length() == location.length()) {
+                return "file";
+            }
+            return location.substring(0, location.length() - rem.length() - 1);
         }
 
         /**
@@ -93,7 +111,7 @@ final class Location {
          */
         int cutIndex() {
             final Matcher matcher = SCHEME_PATTERN.matcher(location);
-            return matcher.find() ? matcher.group(1).length() + 1 : 0;
+            return matcher.find() ? this.asString().length() + 1 : 0;
         }
     }
 }
