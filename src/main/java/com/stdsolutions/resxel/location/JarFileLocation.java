@@ -4,11 +4,11 @@ import com.stdsolutions.resxel.Location;
 
 import java.nio.file.Path;
 
-public class JarFileLocation implements Location {
+class JarFileLocation implements Location {
 
     private final String location;
 
-    public JarFileLocation(String location) {
+    public JarFileLocation(final String location) {
         this.location = location;
     }
 

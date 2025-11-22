@@ -9,7 +9,6 @@ import java.nio.file.Paths;
  * <p>This class provides protection against:
  * <ul>
  *   <li>Path traversal attacks (e.g., "../../../etc/passwd")</li>
- *   <li>Absolute path access (e.g., "/etc/passwd")</li>
  *   <li>Empty or blank paths</li>
  * </ul>
  *
@@ -27,11 +26,11 @@ final class SafeStringPath {
      * @throws IllegalArgumentException if the path is null, blank, contains traversal patterns, or is absolute
      */
     public SafeStringPath(final String migrationPath) {
-        checkEmptyPath(migrationPath);
-        checkTraversalPattern(migrationPath);
         Path path = Paths.get(migrationPath).normalize();
-        checkAbsolutePath(path);
-        this.value = migrationPath;
+        String normalized = path.toString();
+        checkEmptyPath(normalized);
+        checkTraversalPattern(normalized);
+        this.value = path.toString();
     }
 
     /**
@@ -40,7 +39,7 @@ final class SafeStringPath {
      * @return the safe path.
      */
     public String value() {
-        return this.value;
+        return this.toString();
     }
 
     @Override
@@ -64,12 +63,6 @@ final class SafeStringPath {
     private static void checkTraversalPattern(String path) {
         if (path.contains("..")) {
             throw new IllegalArgumentException("Path contains unsafe traversal patterns: " + path);
-        }
-    }
-
-    private static void checkAbsolutePath(Path path) {
-        if (path.isAbsolute()) {
-            throw new IllegalArgumentException("Absolute paths are not allowed: " + path);
         }
     }
 }
