@@ -1,5 +1,7 @@
 package com.stdsolutions.resxel.filesystem;
 
+import com.stdsolutions.resxel.location.LocationOf;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
@@ -12,18 +14,18 @@ import java.util.stream.Stream;
 
 public final class Filesystem {
 
-    private final Location location;
+    private final LocationOf locationOf;
 
     public Filesystem(final String root) {
-        this.location = new Location(root);
+        this.locationOf = new LocationOf(root);
     }
 
     public Filesystem(final URI uri) {
-        this.location = new Location(uri == null ? null : uri.toString());
+        this.locationOf = new LocationOf(uri == null ? null : uri.toString());
     }
 
     public Filesystem(final URL url) {
-        this.location = new Location(url == null ? null : url.toString());
+        this.locationOf = new LocationOf(url == null ? null : url.toString());
     }
 
     public List<Path> resources() throws IOException {
@@ -32,11 +34,11 @@ public final class Filesystem {
 
     public List<Path> resources(int maxDepth) throws IOException {
 
-        try (FileSystem fs = "file".equals(location.scheme())
+        try (FileSystem fs = "file".equals(locationOf.scheme())
                 ? FileSystems.getDefault()
-                : FileSystems.newFileSystem(location.source())) {
+                : FileSystems.newFileSystem(locationOf.source())) {
 
-            Path root = fs.getPath(location.path());
+            Path root = fs.getPath(locationOf.path());
             try (Stream<Path> paths = Files.walk(root, maxDepth)) {
                 return paths
                         .filter(Files::isRegularFile)
