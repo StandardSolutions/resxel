@@ -6,8 +6,10 @@ import java.nio.file.Path;
 
 public class UnexpectedLocation implements Location {
 
-    public UnexpectedLocation(String s) {
+    private final String location;
 
+    public UnexpectedLocation(final String location) {
+        this.location = location;
     }
 
     @Override
