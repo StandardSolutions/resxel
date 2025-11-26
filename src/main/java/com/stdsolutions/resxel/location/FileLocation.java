@@ -24,7 +24,7 @@ final class FileLocation implements Location {
 
     @Override
     public String path() {
-        final String unPrefixed = location.startsWith("file:") ? location.substring(5) : location;
+        final String unPrefixed = location.startsWith("file:") ? location.substring(6) : location;
         return new SafeStringPath(unPrefixed).value();
     }
 }

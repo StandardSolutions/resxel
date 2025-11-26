@@ -1,5 +1,6 @@
 package com.stdsolutions.resxel.filesystem;
 
+import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.location.LocationOf;
 
 import java.io.IOException;
@@ -9,7 +10,10 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public final class Filesystem {
@@ -28,21 +32,32 @@ public final class Filesystem {
         this.locationOf = new LocationOf(url == null ? null : url.toString());
     }
 
-    public List<Path> resources() throws IOException {
-        return resources(1);
+    public List<Location> resources() throws IOException {
+        return resources(10);
     }
 
-    public List<Path> resources(int maxDepth) throws IOException {
+    public List<Location> resources(int maxDepth) throws IOException {
+        String substring = locationOf.source().toString();
+        if ("jar:file".equals(locationOf.scheme())) {
+            substring = substring.substring(9);
+        }
 
-        try (FileSystem fs = "file".equals(locationOf.scheme())
+        FileSystem fs = "file".equals(locationOf.scheme())
                 ? FileSystems.getDefault()
-                : FileSystems.newFileSystem(locationOf.source())) {
+                : FileSystems.newFileSystem(Path.of(substring), Collections.emptyMap());
+        boolean shouldClose = fs != FileSystems.getDefault();
 
-            Path root = fs.getPath(locationOf.path());
-            try (Stream<Path> paths = Files.walk(root, maxDepth)) {
-                return paths
-                        .filter(Files::isRegularFile)
-                        .toList();
+        Path root = fs.getPath(locationOf.path());
+        try (Stream<Path> paths = Files.walk(root, maxDepth)) {
+            return paths
+                    .filter(Files::isRegularFile)
+                    .map(Path::toString)
+                    .map(LocationOf::new)
+                    .map(l -> (Location) l)
+                    .toList();
+        } finally {
+            if (shouldClose) {
+                fs.close();
             }
         }
     }

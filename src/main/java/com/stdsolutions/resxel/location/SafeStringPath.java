@@ -30,7 +30,7 @@ final class SafeStringPath {
         String normalized = path.toString();
         checkEmptyPath(normalized);
         checkTraversalPattern(normalized);
-        this.value = path.toString();
+        this.value = normalized;
     }
 
     /**
