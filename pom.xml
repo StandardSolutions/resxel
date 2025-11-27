@@ -54,6 +54,14 @@
 			<version>5.10.1</version>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>local</groupId>
+			<artifactId>resxel</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>   <!-- ОБЯЗАТЕЛЬНО -->
+			<systemPath>${project.basedir}/src/test/resources/jar/resxel.jar</systemPath>
+		</dependency>
 	</dependencies>
 
 	<build>

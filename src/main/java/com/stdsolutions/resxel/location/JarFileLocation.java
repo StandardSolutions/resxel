@@ -20,7 +20,7 @@ class JarFileLocation implements Location {
     @Override
     public Path source() {
         final int idx = location.indexOf("!/");
-        return idx == -1 ? Path.of(location) : Path.of(location.substring(0, idx));
+        return idx == -1 ? Path.of(location) : Path.of(location.substring(10, idx));
     }
 
     @Override

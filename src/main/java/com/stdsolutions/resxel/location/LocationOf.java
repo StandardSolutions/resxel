@@ -42,6 +42,15 @@ public final class LocationOf implements Location {
         return location.path();
     }
 
+    @Override
+    public String toString() {
+        return "LocationOf{" +
+                "scheme=" + location.scheme() +
+                ", source=" + location.source() +
+                ", path=" + location.path() +
+                '}';
+    }
+
     /**
      * Parses and extracts the URI scheme from a resource location string.
      * <p>
