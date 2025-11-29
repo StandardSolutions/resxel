@@ -1,13 +1,14 @@
 package com.stdsolutions.resxel.location;
+import com.stdsolutions.resxel.Location3;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.nio.file.Path;
+import java.net.URI;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LocationOfTest {
+class Location3OfTest {
 
     // ===================================
     // ---------- REGULAR FILES ----------
@@ -25,11 +26,11 @@ class LocationOfTest {
     })
     @DisplayName("handle file locations on filesystem")
     void handleFileLocationsOnFilesystem(String input, String expectedPath) {
-        LocationOf locationOf = new LocationOf(input);
+        Location3 location3 = new Location3Of(input);
 
-        assertEquals("file", locationOf.scheme());
-        assertEquals(Path.of(""), locationOf.source());
-        assertEquals(expectedPath, locationOf.path());
+        assertEquals("file", location3.scheme());
+        assertEquals(URI.create(""), location3.source());
+        assertEquals(expectedPath, location3.path());
     }
 
     @ParameterizedTest
@@ -40,10 +41,10 @@ class LocationOfTest {
     })
     @DisplayName("handle file locations on jar")
     void handleFileLocationsOnJar(String input, String expectedSource, String expectedPath) {
-        LocationOf locationOf = new LocationOf(input);
+        Location3 location3 = new Location3Of(input);
 
-        assertEquals("jar:file", locationOf.scheme());
-        assertEquals(Path.of(expectedSource), locationOf.source());
-        assertEquals(expectedPath, locationOf.path());
+        assertEquals("jar:file", location3.scheme());
+        assertEquals(URI.create(expectedSource), location3.source());
+        assertEquals(expectedPath, location3.path());
     }
 }

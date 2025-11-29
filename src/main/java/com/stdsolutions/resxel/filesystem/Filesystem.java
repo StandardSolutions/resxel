@@ -1,7 +1,7 @@
 package com.stdsolutions.resxel.filesystem;
 
-import com.stdsolutions.resxel.Location;
-import com.stdsolutions.resxel.location.LocationOf;
+import com.stdsolutions.resxel.Location3;
+import com.stdsolutions.resxel.location.Location3Of;
 
 import java.io.IOException;
 import java.net.URI;
@@ -10,50 +10,43 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 public final class Filesystem {
 
-    private final LocationOf locationOf;
+    private final Location3 location3;
 
     public Filesystem(final String root) {
-        this.locationOf = new LocationOf(root);
+        this.location3 = new Location3Of(root);
     }
 
     public Filesystem(final URI uri) {
-        this.locationOf = new LocationOf(uri == null ? null : uri.toString());
+        this.location3 = new Location3Of(uri == null ? null : uri.toString());
     }
 
     public Filesystem(final URL url) {
-        this.locationOf = new LocationOf(url == null ? null : url.toString());
+        this.location3 = new Location3Of(url == null ? null : url.toString());
     }
 
-    public List<Location> resources() throws IOException {
-        return resources(10);
+    public List<Location3> resources() throws IOException {
+        return resources(Integer.MAX_VALUE);
     }
 
-    public List<Location> resources(int maxDepth) throws IOException {
-        String substring = locationOf.source().toString();
-        if ("jar:file".equals(locationOf.scheme())) {
-            substring = substring.substring(9);
-        }
-
-        FileSystem fs = "file".equals(locationOf.scheme())
+    public List<Location3> resources(int maxDepth) throws IOException {
+        FileSystem fs = "file".equals(location3.scheme())
                 ? FileSystems.getDefault()
-                : FileSystems.newFileSystem(Path.of(substring), Collections.emptyMap());
+                : FileSystems.newFileSystem(location3.source(), Collections.emptyMap());
         boolean shouldClose = fs != FileSystems.getDefault();
 
-        Path root = fs.getPath(locationOf.path());
+        Path root = fs.getPath(location3.path());
         try (Stream<Path> paths = Files.walk(root, maxDepth)) {
             return paths
                     .filter(Files::isRegularFile)
                     .map(Path::toString)
-                    .map(LocationOf::new)
-                    .map(l -> (Location) l)
+                    .map(Location3Of::new)
+                    .map(l -> (Location3) l)
                     .toList();
         } finally {
             if (shouldClose) {

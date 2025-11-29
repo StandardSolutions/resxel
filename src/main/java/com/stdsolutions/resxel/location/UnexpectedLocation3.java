@@ -1,14 +1,14 @@
 package com.stdsolutions.resxel.location;
 
-import com.stdsolutions.resxel.Location;
+import com.stdsolutions.resxel.Location3;
 
-import java.nio.file.Path;
+import java.net.URI;
 
-public class UnexpectedLocation implements Location {
+final class UnexpectedLocation3 implements Location3 {
 
     private final String location;
 
-    public UnexpectedLocation(final String location) {
+    public UnexpectedLocation3(final String location) {
         this.location = location;
     }
 
@@ -18,8 +18,8 @@ public class UnexpectedLocation implements Location {
     }
 
     @Override
-    public Path source() {
-        return Path.of("");
+    public URI source() {
+        return URI.create("");
     }
 
     @Override

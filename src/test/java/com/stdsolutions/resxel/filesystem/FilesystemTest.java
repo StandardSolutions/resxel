@@ -1,24 +1,17 @@
 package com.stdsolutions.resxel.filesystem;
 
-import com.stdsolutions.resxel.Location;
+import com.stdsolutions.resxel.Location3;
 import com.stdsolutions.resxel.sources.ClasspathThreadSource;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.net.URLClassLoader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.jar.JarEntry;
-import java.util.jar.JarOutputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,7 +27,7 @@ class FilesystemTest {
                 .toURI()).toString();
 
         Filesystem filesystem = new Filesystem(jarPath);
-        List<Location> resources = filesystem.resources();
+        List<Location3> resources = filesystem.resources();
 
         System.out.println(resources);
         // Проверяем, что ресурсы найдены
@@ -67,14 +60,14 @@ class FilesystemTest {
 
     @Test
     void testtesttest() throws Exception {
-        List<Location> list = new ClasspathThreadSource("com").resources()
+        List<Location3> list = new ClasspathThreadSource("com").locations()
                 .map(URL::toString)
                 .map(Filesystem::new)
                 .map(fs -> {
                     try {
                         return fs.resources();
                     } catch (IOException e) {
-                        return new ArrayList<Location>();
+                        return new ArrayList<Location3>();
                     }
                 })
                 .flatMap(Collection::stream).toList();

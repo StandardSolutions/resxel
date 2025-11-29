@@ -22,5 +22,7 @@ public interface Resource {
      */
     byte[] asBytes() throws java.io.IOException;
 
-    Origin origin();
+    String content();
+
+    Location3 location();
 }
