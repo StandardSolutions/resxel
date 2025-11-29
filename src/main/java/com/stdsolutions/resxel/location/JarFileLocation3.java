@@ -1,14 +1,14 @@
 package com.stdsolutions.resxel.location;
 
-import com.stdsolutions.resxel.Location;
+import com.stdsolutions.resxel.Location3;
 
-import java.nio.file.Path;
+import java.net.URI;
 
-class JarFileLocation implements Location {
+final class JarFileLocation3 implements Location3 {
 
     private final String location;
 
-    public JarFileLocation(final String location) {
+    public JarFileLocation3(final String location) {
         this.location = location;
     }
 
@@ -18,9 +18,9 @@ class JarFileLocation implements Location {
     }
 
     @Override
-    public Path source() {
+    public URI source() {
         final int idx = location.indexOf("!/");
-        return idx == -1 ? Path.of(location) : Path.of(location.substring(10, idx));
+        return idx == -1 ? URI.create(location) : URI.create(location.substring(0, idx));
     }
 
     @Override

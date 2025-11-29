@@ -1,53 +1,51 @@
 package com.stdsolutions.resxel.location;
 
-import com.stdsolutions.resxel.Location;
+import com.stdsolutions.resxel.Location3;
+import com.stdsolutions.resxel.Resource;
 
-import java.nio.file.Path;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class LocationOf implements Location {
+public final class Location3Of {
 
-    private static final Map<String, Function<String, Location>> LOCATION_MAP = Map.of(
-            "jar:file", JarFileLocation::new,
-            "file", FileLocation::new
+    private static final Map<String, Function<String, Location3>> LOCATION_MAP = Map.of(
+            "jar:file", JarFileLocation3::new,
+            "file", FileLocation3::new
     );
 
-    private final Location location;
+    private final Location3 location3;
 
 
-    public LocationOf(final String location) {
+    public Location3Of(final String location) {
 
         final Scheme scheme = new Scheme(location);
-        this.location = LOCATION_MAP
-                .getOrDefault(scheme.asString(), UnexpectedLocation::new)
+        this.location3 = LOCATION_MAP
+                .getOrDefault(scheme.asString(), UnexpectedLocation3::new)
                 .apply(location);
     }
 
-    @Override
-    public String scheme() {
-        return location.scheme();
+    Set<Resource> resources() {
+        return Set.of();
     }
 
-    @Override
-    public Path source() {
-        return location.source();
+    Set<Resource> resources(int maxDepth) {
+        return Set.of();
     }
 
-    @Override
-    public String path() {
-        return location.path();
+    boolean contains(String filename) {
+        return false;
     }
 
     @Override
     public String toString() {
         return "LocationOf{" +
-                "scheme=" + location.scheme() +
-                ", source=" + location.source() +
-                ", path=" + location.path() +
+                "scheme=" + location3.scheme() +
+                ", source=" + location3.source() +
+                ", path=" + location3.path() +
                 '}';
     }
 

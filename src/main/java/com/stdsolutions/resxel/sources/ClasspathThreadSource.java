@@ -16,7 +16,7 @@ public class ClasspathThreadSource {
         this.path = path;
     }
 
-    public Stream<URL> resources() throws IOException {
+    public Stream<URL> locations() throws IOException {
         List<URL> urls = new ArrayList<>();
         Enumeration<URL> classpathResources = Thread.currentThread().getContextClassLoader().getResources(path);
         while (classpathResources.hasMoreElements()) {

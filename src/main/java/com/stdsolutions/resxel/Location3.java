@@ -1,12 +1,12 @@
 package com.stdsolutions.resxel;
 
-import java.nio.file.Path;
+import java.net.URI;
 
-public interface Location {
+public interface Location3 {
 
     String scheme();
 
-    Path source();
+    URI source();
 
     String path();
 }
