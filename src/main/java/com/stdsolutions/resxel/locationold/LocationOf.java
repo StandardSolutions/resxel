@@ -24,18 +24,15 @@ public final class LocationOf implements Location {
     private final Location location;
 
 
-    public LocationOf(final String location) {
-
-        final Scheme scheme = new Scheme(location);
+    public LocationOf(final String value) {
+        final Scheme scheme = new Scheme(value);
         this.location = LOCATION_MAP
                 .getOrDefault(scheme.asString(), UnexpectedLocation::new)
-                .apply(location);
+                .apply(value);
     }
 
     public LocationOf(final URL url) {
-        this.location = LOCATION_MAP
-                .getOrDefault(url.getProtocol(), UnexpectedLocation::new)
-                .apply(url.toString());
+        this(url.toString());
     }
 
     @Override
@@ -76,16 +73,16 @@ public final class LocationOf implements Location {
         /**
          * The original location string to parse.
          */
-        private final String location;
+        private final String value;
 
         /**
-         * Constructs a new ParsedScheme from the given location string.
+         * Constructs a new ParsedScheme from the given value string.
          *
-         * @param location the resource location string to parse
+         * @param value the resource value string to parse
          */
-        Scheme(final String location) {
-            Objects.requireNonNull(location, "Location can't be NULL");
-            this.location = location;
+        Scheme(final String value) {
+            Objects.requireNonNull(value, "Location can't be NULL");
+            this.value = value;
         }
 
         /**
@@ -97,7 +94,7 @@ public final class LocationOf implements Location {
          * @return the URI scheme (e.g., "http", "https", "jar") or "file" if none found
          */
         String asString() {
-            String rem = location;
+            String rem = value;
             while (true) {
                 final Matcher matcher = SCHEME_PATTERN.matcher(rem);
                 if (matcher.find()) {
@@ -106,10 +103,10 @@ public final class LocationOf implements Location {
                     break;
                 }
             }
-            if (rem.length() == location.length()) {
+            if (rem.length() == value.length()) {
                 return "file";
             }
-            return location.substring(0, location.length() - rem.length() - 1);
+            return value.substring(0, value.length() - rem.length() - 1);
         }
 
         /**
@@ -122,7 +119,7 @@ public final class LocationOf implements Location {
          * @return the zero-based index where to cut the scheme from the location string.
          */
         int cutIndex() {
-            final Matcher matcher = SCHEME_PATTERN.matcher(location);
+            final Matcher matcher = SCHEME_PATTERN.matcher(value);
             return matcher.find() ? this.asString().length() + 1 : 0;
         }
     }
