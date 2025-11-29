@@ -1,11 +1,14 @@
 package com.stdsolutions.resxel.sources;
 
+import com.stdsolutions.resxel.Location;
+import com.stdsolutions.resxel.locationold.LocationOf;
+
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
-import java.util.List;
-import java.util.stream.Stream;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ClasspathThreadSource {
 
@@ -16,12 +19,13 @@ public class ClasspathThreadSource {
         this.path = path;
     }
 
-    public Stream<URL> locations() throws IOException {
-        List<URL> urls = new ArrayList<>();
+    public Set<Location> locations() throws IOException {
+        Set<Location> locations = new HashSet<>();
         Enumeration<URL> classpathResources = Thread.currentThread().getContextClassLoader().getResources(path);
         while (classpathResources.hasMoreElements()) {
-            urls.add(classpathResources.nextElement());
+            Location l = new LocationOf(classpathResources.nextElement());
+            locations.add(l);
         }
-        return urls.stream();
+        return Collections.unmodifiableSet(locations);
     }
 }

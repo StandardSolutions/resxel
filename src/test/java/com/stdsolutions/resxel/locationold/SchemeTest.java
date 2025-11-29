@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.location;
+package com.stdsolutions.resxel.locationold;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ class SchemeTest {
     })
     @DisplayName("should extract scheme value from location")
     void asStringSchemeValue(String location, String expectedScheme, int expectedLength) {
-        Location3Of.Scheme scheme = new Location3Of.Scheme(location);
+        LocationOf.Scheme scheme = new LocationOf.Scheme(location);
 
         assertAll(
                 () -> assertEquals(expectedScheme, scheme.asString()),
@@ -38,6 +38,6 @@ class SchemeTest {
     @Test
     @DisplayName("should throw NullPointerException for null location")
     void shouldThrowNpeForNullLocation() {
-        assertThrows(NullPointerException.class, () -> new Location3Of.Scheme(null));
+        assertThrows(NullPointerException.class, () -> new LocationOf.Scheme(null));
     }
 }

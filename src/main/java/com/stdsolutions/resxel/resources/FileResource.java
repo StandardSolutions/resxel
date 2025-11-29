@@ -1,6 +1,6 @@
 package com.stdsolutions.resxel.resources;
 
-import com.stdsolutions.resxel.Origin;
+import com.stdsolutions.resxel.Location3;
 import com.stdsolutions.resxel.Resource;
 
 import java.io.IOException;
@@ -10,33 +10,43 @@ import java.nio.file.Path;
 
 public class FileResource implements Resource {
 
-    private final Path path;
+    private final String path;
 
-    public FileResource(final Path path) {
+    public FileResource(final String path) {
         this.path = path;
     }
 
     public FileResource(final URL url) {
-        this.path = Path.of(url.toString());
+        this.path = url.toString();
     }
 
     @Override
     public byte[] asBytes() throws IOException {
-        return Files.readAllBytes(path);
+        return Files.readAllBytes(Path.of(path));
     }
 
     @Override
-    public Origin origin() {
-        return new Origin() {
-            @Override
-            public String location() {
-                return path.toString();
-            }
-
-            @Override
-            public String type() {
-                return "file";
-            }
-        };
+    public String content() {
+        return "";
     }
+
+    @Override
+    public Location3 location() {
+        return null;
+    }
+
+//    @Override
+//    public Origin origin() {
+//        return new Origin() {
+//            @Override
+//            public String location() {
+//                return path.toString();
+//            }
+//
+//            @Override
+//            public String type() {
+//                return "file";
+//            }
+//        };
+//    }
 }

@@ -1,8 +1,12 @@
-package com.stdsolutions.resxel.location;
+package com.stdsolutions.resxel.locationold;
 
-import com.stdsolutions.resxel.Location3;
+import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.Resource;
+import com.stdsolutions.resxel.file.FileLocation;
+import com.stdsolutions.resxel.jar.JarLocation;
+import com.stdsolutions.resxel.unexpected.UnexpectedLocation;
 
+import java.net.URL;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -10,44 +14,45 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class Location3Of {
+public final class LocationOf implements Location {
 
-    private static final Map<String, Function<String, Location3>> LOCATION_MAP = Map.of(
-            "jar:file", JarFileLocation3::new,
-            "file", FileLocation3::new
+    private static final Map<String, Function<String, Location>> LOCATION_MAP = Map.of(
+            "jar:file", JarLocation::new,
+            "file", FileLocation::new
     );
 
-    private final Location3 location3;
+    private final Location location;
 
 
-    public Location3Of(final String location) {
+    public LocationOf(final String location) {
 
         final Scheme scheme = new Scheme(location);
-        this.location3 = LOCATION_MAP
-                .getOrDefault(scheme.asString(), UnexpectedLocation3::new)
+        this.location = LOCATION_MAP
+                .getOrDefault(scheme.asString(), UnexpectedLocation::new)
                 .apply(location);
     }
 
-    Set<Resource> resources() {
-        return Set.of();
-    }
-
-    Set<Resource> resources(int maxDepth) {
-        return Set.of();
-    }
-
-    boolean contains(String filename) {
-        return false;
+    public LocationOf(final URL url) {
+        this.location = LOCATION_MAP
+                .getOrDefault(url.getProtocol(), UnexpectedLocation::new)
+                .apply(url.toString());
     }
 
     @Override
-    public String toString() {
-        return "LocationOf{" +
-                "scheme=" + location3.scheme() +
-                ", source=" + location3.source() +
-                ", path=" + location3.path() +
-                '}';
+    public Set<Resource> resources() {
+        return Set.of();
     }
+
+    @Override
+    public Set<Resource> resources(int maxDepth) {
+        return Set.of();
+    }
+
+    @Override
+    public boolean contains(String filename) {
+        return false;
+    }
+
 
     /**
      * Parses and extracts the URI scheme from a resource location string.
