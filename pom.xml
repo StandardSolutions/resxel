@@ -59,7 +59,7 @@
 			<groupId>local</groupId>
 			<artifactId>resxel</artifactId>
 			<version>1.0</version>
-			<scope>system</scope>   <!-- ОБЯЗАТЕЛЬНО -->
+			<scope>system</scope>   <!-- Для тестов -->
 			<systemPath>${project.basedir}/src/test/resources/jar/resxel.jar</systemPath>
 		</dependency>
 	</dependencies>
