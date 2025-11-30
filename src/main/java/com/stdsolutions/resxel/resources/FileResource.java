@@ -1,6 +1,6 @@
 package com.stdsolutions.resxel.resources;
 
-import com.stdsolutions.resxel.Location3;
+import com.stdsolutions.resxel.trash.Location3;
 import com.stdsolutions.resxel.Resource;
 
 import java.io.IOException;

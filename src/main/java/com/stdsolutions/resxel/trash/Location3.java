@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel;
+package com.stdsolutions.resxel.trash;
 
 import java.net.URI;
 

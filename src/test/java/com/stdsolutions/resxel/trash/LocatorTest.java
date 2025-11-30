@@ -1,5 +1,4 @@
-package com.stdsolutions.resxel.locationold;
-import com.stdsolutions.resxel.Location;
+package com.stdsolutions.resxel.trash;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
