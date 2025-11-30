@@ -1,55 +1,36 @@
 package com.stdsolutions.resxel.locationold;
 
 import com.stdsolutions.resxel.Location;
-import com.stdsolutions.resxel.Resource;
-import com.stdsolutions.resxel.file.FileLocation;
-import com.stdsolutions.resxel.jar.JarLocation;
-import com.stdsolutions.resxel.unexpected.UnexpectedLocation;
+import com.stdsolutions.resxel.location.file.FileLocation;
+import com.stdsolutions.resxel.location.jar.JarLocation;
+import com.stdsolutions.resxel.location.unexpected.UnexpectedType;
 
-import java.net.URL;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class LocationOf implements Location {
+public final class Locator {
 
     private static final Map<String, Function<String, Location>> LOCATION_MAP = Map.of(
             "jar:file", JarLocation::new,
             "file", FileLocation::new
     );
 
-    private final Location location;
+    private final Set<Location.Type> types;
 
-
-    public LocationOf(final String value) {
-        final Scheme scheme = new Scheme(value);
-        this.location = LOCATION_MAP
-                .getOrDefault(scheme.asString(), UnexpectedLocation::new)
-                .apply(value);
+    public Locator(final Collection<Location.Type> types) {
+        //final Scheme scheme = new Scheme(value);
+        this.types = new HashSet<>(types);
     }
 
-    public LocationOf(final URL url) {
-        this(url.toString());
+    public Location location(String path) {
+        Optional<Location.Type> optType = types.stream()
+                .filter(type -> type.support(path))
+                .findFirst();
+        Location.Type type = optType.orElseGet(UnexpectedType::new);
+        return type.toLocation(path);
     }
-
-    @Override
-    public Set<Resource> resources() {
-        return Set.of();
-    }
-
-    @Override
-    public Set<Resource> resources(int maxDepth) {
-        return Set.of();
-    }
-
-    @Override
-    public boolean contains(String filename) {
-        return false;
-    }
-
 
     /**
      * Parses and extracts the URI scheme from a resource location string.

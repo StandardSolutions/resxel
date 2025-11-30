@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.jar;
+package com.stdsolutions.resxel.location.jar;
 
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.Scope;
@@ -16,5 +16,10 @@ public class JarScope implements Scope {
     @Override
     public Location in(String bin) {
         return new JarLocation(URI.create(""), scope);
+    }
+
+    @Override
+    public String type() {
+        return "jar:file";
     }
 }

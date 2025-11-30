@@ -1,11 +1,9 @@
 package com.stdsolutions.resxel.sources;
 
 import com.stdsolutions.resxel.Location;
-import com.stdsolutions.resxel.locationold.LocationOf;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class FilesystemSource {
 
@@ -20,9 +18,6 @@ public class FilesystemSource {
     }
 
     public Set<Location> locations() {
-        return this.locations
-                .stream()
-                .map(LocationOf::new)
-                .collect(Collectors.toUnmodifiableSet());
+        return Set.of();
     }
 }

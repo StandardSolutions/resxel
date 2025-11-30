@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.jar;
+package com.stdsolutions.resxel.location.jar;
 
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.Resource;
