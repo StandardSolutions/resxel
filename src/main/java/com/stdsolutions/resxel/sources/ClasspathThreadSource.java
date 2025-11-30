@@ -3,7 +3,7 @@ package com.stdsolutions.resxel.sources;
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.location.file.FileType;
 import com.stdsolutions.resxel.location.jar.JarType;
-import com.stdsolutions.resxel.locationold.Locator;
+import com.stdsolutions.resxel.location.Locator;
 
 import java.io.IOException;
 import java.net.URL;

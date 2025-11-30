@@ -1,19 +1,6 @@
 package com.stdsolutions.resxel.filesystem;
 
-import com.stdsolutions.resxel.Location3;
-import com.stdsolutions.resxel.sources.ClasspathThreadSource;
 import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @Disabled
 class FilesystemTest {

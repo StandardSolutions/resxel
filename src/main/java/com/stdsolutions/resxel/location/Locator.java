@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.locationold;
+package com.stdsolutions.resxel.location;
 
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.location.file.FileLocation;
