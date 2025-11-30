@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.unexpected;
+package com.stdsolutions.resxel.location.unexpected;
 
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.Resource;

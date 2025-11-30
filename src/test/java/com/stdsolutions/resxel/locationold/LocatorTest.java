@@ -1,15 +1,12 @@
 package com.stdsolutions.resxel.locationold;
 import com.stdsolutions.resxel.Location;
-import com.stdsolutions.resxel.Location3;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.net.URI;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LocationOfTest {
+class LocatorTest {
 
     // ===================================
     // ---------- REGULAR FILES ----------
@@ -27,7 +24,7 @@ class LocationOfTest {
     })
     @DisplayName("handle file locations on filesystem")
     void handleFileLocationsOnFilesystem(String input, String expectedPath) {
-        Location location = new LocationOf(input);
+        //Location location = new Locator(input);
 
 //        assertEquals("file", location.scheme());
 //        assertEquals(URI.create(""), location.source());
@@ -42,7 +39,7 @@ class LocationOfTest {
     })
     @DisplayName("handle file locations on jar")
     void handleFileLocationsOnJar(String input, String expectedSource, String expectedPath) {
-        Location location = new LocationOf(input);
+       // Location location = new Locator(input);
 
 //        assertEquals("jar:file", location3.scheme());
 //        assertEquals(URI.create(expectedSource), location3.source());

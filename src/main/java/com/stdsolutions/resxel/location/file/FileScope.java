@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.file;
+package com.stdsolutions.resxel.location.file;
 
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.Scope;
@@ -16,5 +16,10 @@ public class FileScope implements Scope {
     @Override
     public Location in(String bin) {
         return new FileLocation(URI.create(""), scope);
+    }
+
+    @Override
+    public String type() {
+        return "file";
     }
 }

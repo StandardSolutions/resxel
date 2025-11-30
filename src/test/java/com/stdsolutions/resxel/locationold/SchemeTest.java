@@ -27,7 +27,7 @@ class SchemeTest {
     })
     @DisplayName("should extract scheme value from location")
     void asStringSchemeValue(String location, String expectedScheme, int expectedLength) {
-        LocationOf.Scheme scheme = new LocationOf.Scheme(location);
+        Locator.Scheme scheme = new Locator.Scheme(location);
 
         assertAll(
                 () -> assertEquals(expectedScheme, scheme.asString()),
@@ -38,6 +38,6 @@ class SchemeTest {
     @Test
     @DisplayName("should throw NullPointerException for null location")
     void shouldThrowNpeForNullLocation() {
-        assertThrows(NullPointerException.class, () -> new LocationOf.Scheme(null));
+        assertThrows(NullPointerException.class, () -> new Locator.Scheme(null));
     }
 }
