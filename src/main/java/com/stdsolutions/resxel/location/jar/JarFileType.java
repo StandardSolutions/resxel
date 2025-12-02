@@ -2,7 +2,7 @@ package com.stdsolutions.resxel.location.jar;
 
 import com.stdsolutions.resxel.Location;
 
-public class JarType implements Location.Type {
+public class JarFileType implements Location.Type {
 
     @Override
     public boolean support(String path) {
