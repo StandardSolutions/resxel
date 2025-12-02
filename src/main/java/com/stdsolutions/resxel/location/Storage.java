@@ -1,25 +1,18 @@
 package com.stdsolutions.resxel.location;
 
 import com.stdsolutions.resxel.Location;
-import com.stdsolutions.resxel.location.file.FileLocation;
-import com.stdsolutions.resxel.location.jar.JarLocation;
 import com.stdsolutions.resxel.location.unexpected.UnexpectedType;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class Locator {
+public final class Storage {
 
-    private static final Map<String, Function<String, Location>> LOCATION_MAP = Map.of(
-            "jar:file", JarLocation::new,
-            "file", FileLocation::new
-    );
 
     private final Set<Location.Type> types;
 
-    public Locator(final Collection<Location.Type> types) {
+    public Storage(final Collection<Location.Type> types) {
         //final Scheme scheme = new Scheme(value);
         this.types = new HashSet<>(types);
     }
