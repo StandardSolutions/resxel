@@ -5,15 +5,15 @@ import com.stdsolutions.resxel.Location;
 import java.util.List;
 import java.util.Set;
 
-public class CustomNest {
+public class FilesystemNest {
 
     private final List<String> locations;
 
-    public CustomNest(final String location) {
+    public FilesystemNest(final String location) {
         this.locations = List.of(location);
     }
 
-    public CustomNest(final List<String> locations) {
+    public FilesystemNest(final List<String> locations) {
         this.locations = locations;
     }
 

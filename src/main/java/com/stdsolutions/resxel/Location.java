@@ -1,5 +1,6 @@
 package com.stdsolutions.resxel;
 
+import java.net.URI;
 import java.util.Set;
 
 public interface Location {
@@ -16,4 +17,13 @@ public interface Location {
 
         Location toLocation(String path);
     }
+
+     interface Meta {
+
+        String original();
+
+        Scope scope();
+
+        URI mount();
+     }
 }
