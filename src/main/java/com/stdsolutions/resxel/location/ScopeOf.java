@@ -7,12 +7,12 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class Storage {
+public final class ScopeOf {
 
 
     private final Set<Location.Type> types;
 
-    public Storage(final Collection<Location.Type> types) {
+    public ScopeOf(final Collection<Location.Type> types, String value) {
         //final Scheme scheme = new Scheme(value);
         this.types = new HashSet<>(types);
     }

@@ -3,7 +3,7 @@ package com.stdsolutions.resxel.sources;
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.location.file.FileType;
 import com.stdsolutions.resxel.location.jar.JarFileType;
-import com.stdsolutions.resxel.location.Storage;
+import com.stdsolutions.resxel.location.ScopeOf;
 
 import java.io.IOException;
 import java.net.URL;
@@ -11,25 +11,25 @@ import java.util.*;
 
 public class ClasspathThreadNest {
 
-    private final String resource;
+    private final String path;
 
-    private final Storage storage;
+    private final Collection<Location.Type> types;
 
-    public ClasspathThreadNest(final String resource, final Collection<Location.Type> supportedTypes) {
-        this.resource = resource;
-        this.storage = new Storage(supportedTypes);
+    public ClasspathThreadNest(final String path, final Collection<Location.Type> supportedTypes) {
+        this.path = path;
+        this.types = supportedTypes;
     }
 
-    public ClasspathThreadNest(final String resource) {
-        this(resource, Set.of(new JarFileType(), new FileType()));
+    public ClasspathThreadNest(final String path) {
+        this(path, Set.of(new JarFileType(), new FileType()));
     }
 
     public Set<Location> locations() throws IOException {
         Set<Location> locations = new HashSet<>();
-        Enumeration<URL> classpathResources = Thread.currentThread().getContextClassLoader().getResources(resource);
+        Enumeration<URL> classpathResources = Thread.currentThread().getContextClassLoader().getResources(path);
         while (classpathResources.hasMoreElements()) {
-            Location l = storage.location(String.valueOf(classpathResources.nextElement()));
-            locations.add(l);
+            ScopeOf scope = new ScopeOf(types, String.valueOf(classpathResources.nextElement()));
+            //locations.addAll(scope.location());
         }
         return Collections.unmodifiableSet(locations);
     }
