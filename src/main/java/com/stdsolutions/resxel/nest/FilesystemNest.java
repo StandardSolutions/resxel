@@ -1,6 +1,6 @@
-package com.stdsolutions.resxel.sources;
+package com.stdsolutions.resxel.nest;
 
-import com.stdsolutions.resxel.Location;
+import com.stdsolutions.resxel.Scope;
 
 import java.util.List;
 import java.util.Set;
@@ -17,7 +17,7 @@ public class FilesystemNest {
         this.locations = locations;
     }
 
-    public Set<Location> locations() {
+    public Set<Scope> locations() {
         return Set.of();
     }
 }

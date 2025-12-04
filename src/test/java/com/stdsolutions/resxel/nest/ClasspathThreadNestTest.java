@@ -1,6 +1,6 @@
-package com.stdsolutions.resxel.sources;
+package com.stdsolutions.resxel.nest;
 
-import com.stdsolutions.resxel.Location;
+import com.stdsolutions.resxel.Scope;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
@@ -13,7 +13,7 @@ class ClasspathThreadNestTest {
     @Test
     void locations() throws Exception {
         ClasspathThreadNest source = new ClasspathThreadNest("com");
-        Collection<Location> resources = source.locations();
+        Collection<Scope> resources = source.scopes();
 
         System.out.println(resources);
         assertNotNull(resources);
