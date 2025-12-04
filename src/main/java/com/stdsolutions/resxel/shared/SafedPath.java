@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.location;
+package com.stdsolutions.resxel.shared;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

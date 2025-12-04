@@ -1,13 +1,13 @@
-package com.stdsolutions.resxel.location.unexpected;
+package com.stdsolutions.resxel.scope.unexpected;
 
-import com.stdsolutions.resxel.Location;
+import com.stdsolutions.resxel.Scope;
 import com.stdsolutions.resxel.Resource;
 
 import java.util.Set;
 
-public final class UnexpectedLocation implements Location {
+public final class UnexpectedScope implements Scope {
 
-    public UnexpectedLocation(String s) {
+    public UnexpectedScope(String s) {
 
     }
 
