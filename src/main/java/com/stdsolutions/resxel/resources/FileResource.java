@@ -1,6 +1,6 @@
 package com.stdsolutions.resxel.resources;
 
-import com.stdsolutions.resxel.trash.Location3;
+import com.stdsolutions.resxel.Scope;
 import com.stdsolutions.resxel.Resource;
 
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class FileResource implements Resource {
+public final class FileResource implements Resource {
 
     private final String path;
 
@@ -31,7 +31,7 @@ public class FileResource implements Resource {
     }
 
     @Override
-    public Location3 location() {
+    public Scope location() {
         return null;
     }
 

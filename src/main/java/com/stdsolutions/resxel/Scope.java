@@ -11,11 +11,11 @@ public interface Scope {
 
     boolean contains(String filename);
 
-    interface Type {
+    interface Mode {
 
         String name();
 
-        Scope toScope(String path);
+        Scope scope(String path);
     }
 
      interface Meta {
