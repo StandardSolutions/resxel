@@ -1,7 +1,5 @@
 package com.stdsolutions.resxel;
 
-import com.stdsolutions.resxel.trash.Location3;
-
 /**
  * Represents a result or descriptor of a located resource object.
  * <p>
@@ -26,5 +24,5 @@ public interface Resource {
 
     String content();
 
-    Location3 location();
+    Scope location();
 }

@@ -15,18 +15,18 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public final class JarScope implements Scope {
+public final class JarFileScope implements Scope {
 
     private final URI uri;
 
     private final String scope;
 
-    public JarScope(final URI uri, final String scope) {
+    public JarFileScope(final URI uri, final String scope) {
         this.uri = uri;
         this.scope = scope;
     }
 
-    public JarScope(final String path) {
+    public JarFileScope(final String path) {
         this.uri = null;
         this.scope = null;
     }

@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.uri;
+package com.stdsolutions.resxel.shared;
 
 import java.net.URI;
 import java.net.URL;

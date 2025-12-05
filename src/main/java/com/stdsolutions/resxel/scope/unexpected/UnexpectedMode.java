@@ -2,7 +2,7 @@ package com.stdsolutions.resxel.scope.unexpected;
 
 import com.stdsolutions.resxel.Scope;
 
-public class UnexpectedType implements Scope.Type {
+public final class UnexpectedMode implements Scope.Mode {
 
     @Override
     public String name() {
@@ -10,7 +10,7 @@ public class UnexpectedType implements Scope.Type {
     }
 
     @Override
-    public Scope toScope(String path) {
-        return null;
+    public Scope scope(String path) {
+        return new UnexpectedScope(path);
     }
 }
