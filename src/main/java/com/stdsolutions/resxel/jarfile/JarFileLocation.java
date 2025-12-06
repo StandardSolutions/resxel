@@ -2,6 +2,8 @@ package com.stdsolutions.resxel.jarfile;
 
 import com.stdsolutions.resxel.Location;
 
+import java.nio.file.Path;
+
 final class JarFileLocation implements Location {
 
     private final String location;
@@ -11,8 +13,8 @@ final class JarFileLocation implements Location {
     }
 
     @Override
-    public String path() {
-        return "";
+    public Path path() {
+        return Path.of("");
     }
 
 //    @Override

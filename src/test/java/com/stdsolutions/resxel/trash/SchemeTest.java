@@ -1,6 +1,6 @@
 package com.stdsolutions.resxel.trash;
 
-import com.stdsolutions.resxel.Scheme;
+import com.stdsolutions.resxel.shared.Scheme;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

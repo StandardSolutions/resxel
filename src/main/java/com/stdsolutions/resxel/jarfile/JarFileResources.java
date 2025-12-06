@@ -3,6 +3,7 @@ package com.stdsolutions.resxel.jarfile;
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.Scope;
+import com.stdsolutions.resxel.shared.Result;
 
 import java.io.IOException;
 
@@ -20,8 +21,8 @@ final class JarFileResources implements Resource {
     }
 
     @Override
-    public String content() {
-        return "";
+    public Result<String> content() {
+        return new Result<>("");
     }
 
     @Override

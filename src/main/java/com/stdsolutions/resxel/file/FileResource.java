@@ -3,10 +3,11 @@ package com.stdsolutions.resxel.file;
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.Scope;
+import com.stdsolutions.resxel.shared.Result;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 public final class FileResource implements Resource {
 
@@ -22,12 +23,17 @@ public final class FileResource implements Resource {
 
     @Override
     public byte[] asBytes() throws IOException {
-        return Files.readAllBytes(Path.of(location.path()));
+        return Files.readAllBytes(location.path());
     }
 
     @Override
-    public String content() {
-        return "";
+    public Result<String> content() {
+        try {
+            String s = Files.readString(location.path(), StandardCharsets.UTF_8);
+            return new Result<>(s);
+        } catch (IOException e) {
+            return new Result<>("");
+        }
     }
 
     @Override
