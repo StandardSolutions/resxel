@@ -1,31 +1,21 @@
-package com.stdsolutions.resxel.scope.file;
+package com.stdsolutions.resxel.file;
 
-import com.stdsolutions.resxel.Scope;
 import com.stdsolutions.resxel.Resource;
-import com.stdsolutions.resxel.resources.FileResource;
+import com.stdsolutions.resxel.Scope;
 
 import java.io.IOException;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public final class FileScope implements Scope {
+final class FileScope implements Scope {
 
-    private final URI uri;
+    private final String value;
 
-    private final String scope;
-
-    public FileScope(final URI uri, final String scope) {
-        this.uri = uri;
-        this.scope = scope;
-    }
-
-    public FileScope(final String path) {
-        this.uri = null;
-        this.scope = null;
+    FileScope(final String value) {
+        this.value = value;
     }
 
     @Override
@@ -35,19 +25,15 @@ public final class FileScope implements Scope {
 
     @Override
     public Set<Resource> resources(int maxDepth) {
-        try (Stream<Path> paths = Files.walk(Path.of(scope), maxDepth)) {
+        try (Stream<Path> paths = Files.walk(Path.of(value), maxDepth)) {
             return paths
                     .filter(Files::isRegularFile)
                     .map(Path::toString)
+                    .map(FileLocation::new)
                     .map(FileResource::new)
                     .collect(Collectors.toSet());
         } catch (IOException e) {
             return Set.of();
         }
-    }
-
-    @Override
-    public boolean contains(String filename) {
-        return false;
     }
 }

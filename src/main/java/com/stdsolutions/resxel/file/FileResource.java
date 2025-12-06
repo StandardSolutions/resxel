@@ -1,28 +1,28 @@
-package com.stdsolutions.resxel.resources;
+package com.stdsolutions.resxel.file;
 
-import com.stdsolutions.resxel.Scope;
+import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.Resource;
+import com.stdsolutions.resxel.Scope;
 
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 public final class FileResource implements Resource {
 
-    private final String path;
+    private final Location location;
 
     public FileResource(final String path) {
-        this.path = path;
+        this.location = new FileLocation(path);
     }
 
-    public FileResource(final URL url) {
-        this.path = url.toString();
+    public FileResource(final Location location) {
+        this.location = location;
     }
 
     @Override
     public byte[] asBytes() throws IOException {
-        return Files.readAllBytes(Path.of(path));
+        return Files.readAllBytes(Path.of(location.path()));
     }
 
     @Override

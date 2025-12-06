@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.scope.file;
+package com.stdsolutions.resxel.file;
 
 import com.stdsolutions.resxel.Scope;
 

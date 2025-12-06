@@ -9,8 +9,6 @@ public interface Scope {
 
     Set<Resource> resources(int maxDepth);
 
-    boolean contains(String filename);
-
     interface Mode {
 
         String name();

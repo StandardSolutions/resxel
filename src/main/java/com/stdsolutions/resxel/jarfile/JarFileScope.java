@@ -1,8 +1,7 @@
-package com.stdsolutions.resxel.scope.jarfile;
+package com.stdsolutions.resxel.jarfile;
 
-import com.stdsolutions.resxel.Scope;
 import com.stdsolutions.resxel.Resource;
-import com.stdsolutions.resxel.resources.FileResource;
+import com.stdsolutions.resxel.Scope;
 
 import java.io.IOException;
 import java.net.URI;
@@ -44,17 +43,13 @@ public final class JarFileScope implements Scope {
                 return paths
                         .filter(Files::isRegularFile)
                         .map(Path::toString)
-                        .map(FileResource::new)
+                        .map(JarFileLocation::new)
+                        .map(JarFileResources::new)
                         .collect(Collectors.toSet());
             }
 
         } catch (IOException e) {
             return Set.of();
         }
-    }
-
-    @Override
-    public boolean contains(String filename) {
-        return false;
     }
 }
