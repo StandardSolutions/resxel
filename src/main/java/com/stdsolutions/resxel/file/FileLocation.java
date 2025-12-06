@@ -1,16 +1,23 @@
 package com.stdsolutions.resxel.file;
 
 import com.stdsolutions.resxel.Location;
-import com.stdsolutions.resxel.SafedPath;
+import com.stdsolutions.resxel.shared.SafedPath;
+
+import java.nio.file.Path;
 
 final class FileLocation implements Location {
 
-    private final String location;
+    private final String value;
 
-    public FileLocation(final String location) {
-        this.location = location;
+    public FileLocation(final String value) {
+        this.value = value;
     }
-//
+
+    public FileLocation(final Path path) {
+        this.value = path.toString();
+    }
+
+    //
 //    @Override
 //    public String scheme() {
 //        return "file";
@@ -22,8 +29,8 @@ final class FileLocation implements Location {
 //    }
 //
     @Override
-    public String path() {
-        final String unPrefixed = location.startsWith("file:") ? location.substring(5) : location;
-        return new SafedPath(unPrefixed).value();
+    public Path path() {
+        final String unPrefixed = value.startsWith("file:") ? value.substring(5) : value;
+        return Path.of(new SafedPath(unPrefixed).value());
     }
 }

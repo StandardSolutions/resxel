@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel;
+package com.stdsolutions.resxel.shared;
 
 import java.util.Objects;
 import java.util.regex.Matcher;

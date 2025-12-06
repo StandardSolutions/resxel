@@ -1,5 +1,7 @@
 package com.stdsolutions.resxel;
 
+import com.stdsolutions.resxel.shared.Result;
+
 /**
  * Represents a result or descriptor of a located resource object.
  * <p>
@@ -22,7 +24,7 @@ public interface Resource {
      */
     byte[] asBytes() throws java.io.IOException;
 
-    String content();
+    Result<String> content();
 
     Scope location();
 }
