@@ -1,8 +1,6 @@
-package com.stdsolutions.resxel.scope;
+package com.stdsolutions.resxel;
 
-import com.stdsolutions.resxel.Scope;
-import com.stdsolutions.resxel.Scheme;
-import com.stdsolutions.resxel.scope.unexpected.UnexpectedMode;
+import com.stdsolutions.resxel.unexpected.UnexpectedMode;
 
 import java.net.URL;
 import java.util.*;

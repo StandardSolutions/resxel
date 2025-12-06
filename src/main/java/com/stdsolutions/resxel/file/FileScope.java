@@ -1,8 +1,7 @@
-package com.stdsolutions.resxel.scope.file;
+package com.stdsolutions.resxel.file;
 
-import com.stdsolutions.resxel.Scope;
 import com.stdsolutions.resxel.Resource;
-import com.stdsolutions.resxel.resources.FileResource;
+import com.stdsolutions.resxel.Scope;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,11 +10,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public final class FileScope implements Scope {
+final class FileScope implements Scope {
 
     private final String value;
 
-    public FileScope(final String value) {
+    FileScope(final String value) {
         this.value = value;
     }
 
@@ -30,15 +29,11 @@ public final class FileScope implements Scope {
             return paths
                     .filter(Files::isRegularFile)
                     .map(Path::toString)
+                    .map(FileLocation::new)
                     .map(FileResource::new)
                     .collect(Collectors.toSet());
         } catch (IOException e) {
             return Set.of();
         }
-    }
-
-    @Override
-    public boolean contains(String resourceName) {
-        return false;
     }
 }

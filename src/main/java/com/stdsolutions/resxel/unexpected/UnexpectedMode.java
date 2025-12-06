@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.scope.unexpected;
+package com.stdsolutions.resxel.unexpected;
 
 import com.stdsolutions.resxel.Scope;
 

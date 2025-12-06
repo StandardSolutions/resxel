@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.scope.jarfile;
+package com.stdsolutions.resxel.jarfile;
 
 import com.stdsolutions.resxel.Scope;
 

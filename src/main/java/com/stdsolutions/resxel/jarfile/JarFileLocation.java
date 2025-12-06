@@ -1,13 +1,20 @@
-package com.stdsolutions.resxel.trash;
+package com.stdsolutions.resxel.jarfile;
 
-final class JarFileLocation3 {
+import com.stdsolutions.resxel.Location;
 
-//    private final String location;
-//
-//    public JarFileLocation3(final String location) {
-//        this.location = location;
-//    }
-//
+final class JarFileLocation implements Location {
+
+    private final String location;
+
+    public JarFileLocation(final String location) {
+        this.location = location;
+    }
+
+    @Override
+    public String path() {
+        return "";
+    }
+
 //    @Override
 //    public String scheme() {
 //        return "jar:file";

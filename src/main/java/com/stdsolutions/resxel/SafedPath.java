@@ -1,4 +1,4 @@
-package com.stdsolutions.resxel.shared;
+package com.stdsolutions.resxel;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +15,7 @@ import java.nio.file.Paths;
  * <p>All paths are normalized and converted to use forward slashes for consistency.
  * Only relative paths within the current directory tree are allowed.
  */
-final class SafedPath {
+public final class SafedPath {
 
     private final String value;
 

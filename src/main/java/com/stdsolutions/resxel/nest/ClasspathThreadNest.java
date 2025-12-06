@@ -1,9 +1,9 @@
 package com.stdsolutions.resxel.nest;
 
 import com.stdsolutions.resxel.Scope;
-import com.stdsolutions.resxel.scope.ScopeFrom;
-import com.stdsolutions.resxel.scope.file.FileMode;
-import com.stdsolutions.resxel.scope.jarfile.JarFileMode;
+import com.stdsolutions.resxel.ScopeFrom;
+import com.stdsolutions.resxel.file.FileMode;
+import com.stdsolutions.resxel.jarfile.JarFileMode;
 
 import java.io.IOException;
 import java.net.URL;
