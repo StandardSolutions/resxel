@@ -2,14 +2,12 @@ package com.stdsolutions.resxel.file;
 
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.Resource;
-import com.stdsolutions.resxel.Scope;
 import com.stdsolutions.resxel.shared.Result;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
-public final class FileResource implements Resource {
+final class FileResource implements Resource {
 
     private final Location location;
 
@@ -17,42 +15,22 @@ public final class FileResource implements Resource {
         this.location = new FileLocation(path);
     }
 
-    public FileResource(final Location location) {
+    public FileResource(final FileLocation location) {
         this.location = location;
     }
 
     @Override
-    public byte[] asBytes() throws IOException {
-        return Files.readAllBytes(location.path());
+    public Result<byte[]> asBytes() {
+        return Result.tryCatch(() -> Files.readAllBytes(location.path()));
     }
 
     @Override
-    public Result<String> content() {
-        try {
-            String s = Files.readString(location.path(), StandardCharsets.UTF_8);
-            return new Result<>(s);
-        } catch (IOException e) {
-            return new Result<>("");
-        }
+    public Result<String> asString() {
+        return Result.tryCatch(() -> Files.readString(location.path(), StandardCharsets.UTF_8));
     }
 
     @Override
-    public Scope location() {
-        return null;
+    public Location location() {
+        return location;
     }
-
-//    @Override
-//    public Origin origin() {
-//        return new Origin() {
-//            @Override
-//            public String location() {
-//                return path.toString();
-//            }
-//
-//            @Override
-//            public String type() {
-//                return "file";
-//            }
-//        };
-//    }
 }

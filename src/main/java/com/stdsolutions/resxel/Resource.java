@@ -20,11 +20,10 @@ public interface Resource {
      * </p>
      *
      * @return the resource content as bytes, never {@code null}
-     * @throws java.io.IOException if an error occurs reading the content
      */
-    byte[] asBytes() throws java.io.IOException;
+    Result<byte[]> asBytes();
 
-    Result<String> content();
+    Result<String> asString();
 
-    Scope location();
+    Location location();
 }
