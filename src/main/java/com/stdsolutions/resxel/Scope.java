@@ -16,12 +16,12 @@ public interface Scope {
         Scope scope(String path);
     }
 
-     interface Meta {
+    interface Meta {
 
         String original();
 
         Scope scope();
 
         URI mount();
-     }
+    }
 }
