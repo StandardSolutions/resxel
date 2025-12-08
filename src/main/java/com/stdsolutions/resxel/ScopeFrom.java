@@ -4,7 +4,8 @@ import com.stdsolutions.resxel.shared.Scheme;
 import com.stdsolutions.resxel.unexpected.UnexpectedMode;
 
 import java.net.URL;
-import java.util.*;
+import java.util.Collection;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
