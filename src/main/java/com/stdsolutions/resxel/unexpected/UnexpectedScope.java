@@ -7,7 +7,7 @@ import java.util.Set;
 
 public final class UnexpectedScope implements Scope {
 
-    public UnexpectedScope(String s) {
+    public UnexpectedScope(final String s) {
 
     }
 
@@ -17,7 +17,7 @@ public final class UnexpectedScope implements Scope {
     }
 
     @Override
-    public Set<Resource> resources(int maxDepth) {
+    public Set<Resource> resources(final int maxDepth) {
         return Set.of();
     }
 }

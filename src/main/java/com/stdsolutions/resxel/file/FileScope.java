@@ -24,7 +24,7 @@ final class FileScope implements Scope {
     }
 
     @Override
-    public Set<Resource> resources(int maxDepth) {
+    public Set<Resource> resources(final int maxDepth) {
         try (Stream<Path> paths = Files.walk(Path.of(value), maxDepth)) {
             return paths
                     .filter(Files::isRegularFile)

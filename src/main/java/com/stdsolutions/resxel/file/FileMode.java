@@ -10,7 +10,7 @@ public final class FileMode implements Scope.Mode {
     }
 
     @Override
-    public Scope scope(String path) {
+    public Scope scope(final String path) {
         return new FileScope(path);
     }
 }

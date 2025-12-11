@@ -11,19 +11,19 @@ public final class PartedLocation {
 
     private final String dir;
 
-    public PartedLocation(String fsPath, String dir) {
+    public PartedLocation(final String fsPath, final String dir) {
         this.isDefaultFilesystem = false;
         this.fsPath = fsPath;
         this.dir = dir;
     }
 
-    public PartedLocation(URI uri) {
+    public PartedLocation(final URI uri) {
         this.isDefaultFilesystem = "file".equals(uri.getScheme());
         this.fsPath = null;
         this.dir = null;
     }
 
-    public PartedLocation(URL url) {
+    public PartedLocation(final URL url) {
         this.isDefaultFilesystem = "file".equals(url.getProtocol());
         this.fsPath = null;
         this.dir = null;

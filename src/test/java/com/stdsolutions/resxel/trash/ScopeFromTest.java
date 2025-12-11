@@ -1,9 +1,8 @@
 package com.stdsolutions.resxel.trash;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ScopeFromTest {
 
@@ -22,7 +21,7 @@ class ScopeFromTest {
             "C:/jar:any!/symbols?q, C:/jar:any!/symbols?q",
     })
     @DisplayName("handle file locations on filesystem")
-    void handleFileLocationsOnFilesystem(String input, String expectedPath) {
+    void handleFileLocationsOnFilesystem(final String input, final String expectedPath) {
         //Location location = new Locator(input);
 
 //        assertEquals("file", location.scheme());
@@ -37,8 +36,8 @@ class ScopeFromTest {
             "jar:file:/path/to/resxel.jar!/to/file.txt, jar:file:/path/to/resxel.jar, /to/file.txt",
     })
     @DisplayName("handle file locations on jar")
-    void handleFileLocationsOnJar(String input, String expectedSource, String expectedPath) {
-       // Location location = new Locator(input);
+    void handleFileLocationsOnJar(final String input, final String expectedSource, final String expectedPath) {
+        // Location location = new Locator(input);
 
 //        assertEquals("jar:file", location3.scheme());
 //        assertEquals(URI.create(expectedSource), location3.source());
