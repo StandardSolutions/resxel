@@ -8,7 +8,7 @@ final class JarFileResources implements Resource {
 
     private final Location location;
 
-    public JarFileResources(Location location) {
+    public JarFileResources(final Location location) {
         this.location = location;
     }
 

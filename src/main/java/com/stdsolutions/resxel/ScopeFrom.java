@@ -21,13 +21,13 @@ public final class ScopeFrom {
                 .collect(Collectors.toMap(Scope.Mode::name, Function.identity()));
     }
 
-    public Scope by(String path) {
+    public Scope by(final String path) {
         Scheme scheme = new Scheme(path);
         Scope.Mode mode = modes.getOrDefault(scheme.asString(), new UnexpectedMode());
         return mode.scope(path);
     }
 
-    public Scope by(URL url) {
+    public Scope by(final URL url) {
         return by(String.valueOf(url));
     }
 }

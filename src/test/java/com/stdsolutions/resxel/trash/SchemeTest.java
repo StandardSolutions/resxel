@@ -27,7 +27,7 @@ class SchemeTest {
             "'', file, 0"
     })
     @DisplayName("should extract scheme value from location")
-    void asStringSchemeValue(String location, String expectedScheme, int expectedLength) {
+    void asStringSchemeValue(final String location, final String expectedScheme, final int expectedLength) {
         Scheme scheme = new Scheme(location);
 
         assertAll(

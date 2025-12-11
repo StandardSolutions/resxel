@@ -10,7 +10,7 @@ public final class UnexpectedMode implements Scope.Mode {
     }
 
     @Override
-    public Scope scope(String path) {
+    public Scope scope(final String path) {
         return new UnexpectedScope(path);
     }
 }

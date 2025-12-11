@@ -50,7 +50,7 @@ public final class SafedPath {
                 .replaceAll("/+", "/");
     }
 
-    private static void checkEmptyPath(String path) {
+    private static void checkEmptyPath(final String path) {
         if (path == null) {
             throw new IllegalArgumentException("Path cannot be null");
         }
@@ -60,7 +60,7 @@ public final class SafedPath {
         }
     }
 
-    private static void checkTraversalPattern(String path) {
+    private static void checkTraversalPattern(final String path) {
         if (path.contains("..")) {
             throw new IllegalArgumentException("Path contains unsafe traversal patterns: " + path);
         }
