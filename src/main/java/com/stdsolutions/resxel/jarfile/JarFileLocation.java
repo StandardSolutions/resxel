@@ -1,7 +1,6 @@
 package com.stdsolutions.resxel.jarfile;
 
 import com.stdsolutions.resxel.Location;
-
 import java.nio.file.Path;
 
 final class JarFileLocation implements Location {

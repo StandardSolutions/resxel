@@ -2,7 +2,6 @@ package com.stdsolutions.resxel;
 
 import com.stdsolutions.resxel.shared.Scheme;
 import com.stdsolutions.resxel.unexpected.UnexpectedMode;
-
 import java.net.URL;
 import java.util.Collection;
 import java.util.Map;

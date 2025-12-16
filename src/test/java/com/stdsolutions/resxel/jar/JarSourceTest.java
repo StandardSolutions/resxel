@@ -1,10 +1,8 @@
 package com.stdsolutions.resxel.jar;
 
 import org.junit.jupiter.api.Test;
-
 import java.net.URL;
 import java.net.URLClassLoader;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JarSourceTest {

@@ -2,7 +2,6 @@ package com.stdsolutions.resxel.file;
 
 import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.Scope;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -26,12 +25,7 @@ final class FileScope implements Scope {
     @Override
     public Set<Resource> resources(final int maxDepth) {
         try (Stream<Path> paths = Files.walk(Path.of(value), maxDepth)) {
-            return paths
-                    .filter(Files::isRegularFile)
-                    .map(Path::toString)
-                    .map(FileLocation::new)
-                    .map(FileResource::new)
-                    .collect(Collectors.toSet());
+            return paths.filter(Files::isRegularFile).map(Path::toString).map(FileLocation::new).map(FileResource::new).collect(Collectors.toSet());
         } catch (IOException e) {
             return Set.of();
         }

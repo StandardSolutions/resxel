@@ -1,7 +1,6 @@
 package com.stdsolutions.resxel.nest;
 
 import com.stdsolutions.resxel.Scope;
-
 import java.util.List;
 import java.util.Set;
 

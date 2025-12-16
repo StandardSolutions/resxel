@@ -2,7 +2,6 @@ package com.stdsolutions.resxel.file;
 
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.shared.SafedPath;
-
 import java.nio.file.Path;
 
 final class FileLocation implements Location {
