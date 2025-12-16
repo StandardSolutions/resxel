@@ -32,4 +32,5 @@ final class FileLocation implements Location {
         final String unPrefixed = value.startsWith("file:") ? value.substring(5) : value;
         return Path.of(new SafedPath(unPrefixed).value());
     }
+
 }
