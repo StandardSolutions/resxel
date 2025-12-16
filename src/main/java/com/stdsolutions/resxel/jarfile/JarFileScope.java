@@ -2,7 +2,6 @@ package com.stdsolutions.resxel.jarfile;
 
 import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.Scope;
-
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystem;

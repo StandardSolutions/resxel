@@ -3,7 +3,6 @@ package com.stdsolutions.resxel.file;
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.shared.Result;
-
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 

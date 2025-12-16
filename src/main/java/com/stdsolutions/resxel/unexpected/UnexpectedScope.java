@@ -2,7 +2,6 @@ package com.stdsolutions.resxel.unexpected;
 
 import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.Scope;
-
 import java.util.Set;
 
 public final class UnexpectedScope implements Scope {
