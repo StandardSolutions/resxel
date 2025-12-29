@@ -10,7 +10,6 @@ class JarSourceTest {
     @Test
     void resources() throws Exception {
         URL jarFileUrl = Thread.currentThread().getContextClassLoader().getResource("jar/resxel.jar");
-
         String protocol = "";
         try (URLClassLoader jarClassLoader = new URLClassLoader(new URL[]{jarFileUrl}, null)) {
             URL resource = jarClassLoader.getResource("simplelogger.properties");

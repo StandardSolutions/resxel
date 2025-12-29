@@ -54,7 +54,6 @@ public final class SafedPath {
         if (path == null) {
             throw new IllegalArgumentException("Path cannot be null");
         }
-
         if (path.isBlank()) {
             throw new IllegalArgumentException("Path cannot be blank");
         }

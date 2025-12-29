@@ -7,7 +7,6 @@ import java.util.Set;
 public final class UnexpectedScope implements Scope {
 
     public UnexpectedScope(final String s) {
-
     }
 
     @Override

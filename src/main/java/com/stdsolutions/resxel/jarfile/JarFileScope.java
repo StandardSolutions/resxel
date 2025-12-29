@@ -46,7 +46,6 @@ public final class JarFileScope implements Scope {
                         .map(JarFileResources::new)
                         .collect(Collectors.toSet());
             }
-
         } catch (IOException e) {
             return Set.of();
         }

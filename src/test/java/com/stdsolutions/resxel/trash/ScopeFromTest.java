@@ -23,7 +23,6 @@ class ScopeFromTest {
     @DisplayName("handle file locations on filesystem")
     void handleFileLocationsOnFilesystem(final String input, final String expectedPath) {
         //Location location = new Locator(input);
-
 //        assertEquals("file", location.scheme());
 //        assertEquals(URI.create(""), location.source());
 //        assertEquals(expectedPath, location.path());
@@ -38,7 +37,6 @@ class ScopeFromTest {
     @DisplayName("handle file locations on jar")
     void handleFileLocationsOnJar(final String input, final String expectedSource, final String expectedPath) {
         // Location location = new Locator(input);
-
 //        assertEquals("jar:file", location3.scheme());
 //        assertEquals(URI.create(expectedSource), location3.source());
 //        assertEquals(expectedPath, location3.path());

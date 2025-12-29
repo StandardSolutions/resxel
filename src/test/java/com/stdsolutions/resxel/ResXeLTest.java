@@ -6,10 +6,8 @@ class ResXeLTest {
     @Test
     void streamShouldReturnAllFilesRecursively() {
         // Arrange
-
         // Act
         ResXeL jar = new ResXeL();
-
         // Assert
     }
 
