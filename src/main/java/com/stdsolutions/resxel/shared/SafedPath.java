@@ -26,8 +26,8 @@ public final class SafedPath {
      * @throws IllegalArgumentException if the path is null, blank, contains traversal patterns, or is absolute
      */
     public SafedPath(final String migrationPath) {
-        Path path = Paths.get(migrationPath).normalize();
-        String normalized = path.toString();
+        final Path path = Paths.get(migrationPath).normalize();
+        final String normalized = path.toString();
         checkEmptyPath(normalized);
         checkTraversalPattern(normalized);
         this.value = normalized;

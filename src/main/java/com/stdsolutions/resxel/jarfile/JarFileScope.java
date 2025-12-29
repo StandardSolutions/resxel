@@ -37,7 +37,7 @@ public final class JarFileScope implements Scope {
     @Override
     public Set<Resource> resources(final int maxDepth) {
         try (FileSystem fs = FileSystems.newFileSystem(uri, Collections.emptyMap())) {
-            Path root = fs.getPath(scope);
+            final Path root = fs.getPath(scope);
             try (Stream<Path> paths = Files.walk(root, maxDepth)) {
                 return paths
                         .filter(Files::isRegularFile)

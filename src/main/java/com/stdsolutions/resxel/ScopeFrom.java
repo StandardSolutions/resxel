@@ -20,8 +20,8 @@ public final class ScopeFrom {
     }
 
     public Scope by(final String path) {
-        Scheme scheme = new Scheme(path);
-        Scope.Mode mode = modes.getOrDefault(scheme.asString(), new UnexpectedMode());
+        final Scheme scheme = new Scheme(path);
+        final Scope.Mode mode = modes.getOrDefault(scheme.asString(), new UnexpectedMode());
         return mode.scope(path);
     }
 

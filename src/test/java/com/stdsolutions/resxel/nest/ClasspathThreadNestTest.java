@@ -9,8 +9,8 @@ class ClasspathThreadNestTest {
 
     @Test
     void locations() throws Exception {
-        ClasspathThreadNest source = new ClasspathThreadNest("com");
-        Collection<Scope> resources = source.scopes();
+        final ClasspathThreadNest source = new ClasspathThreadNest("com");
+        final Collection<Scope> resources = source.scopes();
         System.out.println(resources);
         assertNotNull(resources);
     }
