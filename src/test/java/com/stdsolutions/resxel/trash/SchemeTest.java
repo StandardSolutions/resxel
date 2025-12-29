@@ -28,7 +28,6 @@ class SchemeTest {
     @DisplayName("should extract scheme value from location")
     void asStringSchemeValue(final String location, final String expectedScheme, final int expectedLength) {
         Scheme scheme = new Scheme(location);
-
         assertAll(
                 () -> assertEquals(expectedScheme, scheme.asString()),
                 () -> assertEquals(expectedLength, scheme.cutIndex())

@@ -14,7 +14,6 @@ public final class ScopeFrom {
     private final Map<String, Scope.Mode> modes;
 
     public ScopeFrom(final Collection<Scope.Mode> modes) {
-
         this.modes = modes.stream()
                 .distinct()
                 .collect(Collectors.toMap(Scope.Mode::name, Function.identity()));
