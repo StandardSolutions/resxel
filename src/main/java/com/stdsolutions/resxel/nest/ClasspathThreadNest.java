@@ -28,11 +28,11 @@ public final class ClasspathThreadNest {
     }
 
     public Set<Scope> scopes() throws IOException {
-        Set<Scope> scopes = new HashSet<>();
-        Enumeration<URL> classpathResources = Thread.currentThread().getContextClassLoader().getResources(path);
+        final Set<Scope> scopes = new HashSet<>();
+        final Enumeration<URL> classpathResources = Thread.currentThread().getContextClassLoader().getResources(path);
         while (classpathResources.hasMoreElements()) {
-            URL url = classpathResources.nextElement();
-            Scope scope = new ScopeFrom(modes).by(url);
+            final URL url = classpathResources.nextElement();
+            final Scope scope = new ScopeFrom(modes).by(url);
             scopes.add(scope);
         }
         return Collections.unmodifiableSet(scopes);
