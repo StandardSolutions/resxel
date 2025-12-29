@@ -4,7 +4,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * A secure path implementation that validates and sanitizes file paths to prevent security vulnerabilities.
+ * A secure path implementation that validates and sanitizes file paths to prevent security
+ * vulnerabilities.
  *
  * <p>This class provides protection against:
  * <ul>
@@ -23,7 +24,8 @@ public final class SafedPath {
      * Creates a new SafePath from the given string path.
      *
      * @param migrationPath the path string to validate and sanitize
-     * @throws IllegalArgumentException if the path is null, blank, contains traversal patterns, or is absolute
+     * @throws IllegalArgumentException if the path is null, blank, contains traversal patterns,
+     * or is absolute
      */
     public SafedPath(final String migrationPath) {
         final Path path = Paths.get(migrationPath).normalize();
