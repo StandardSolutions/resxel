@@ -35,7 +35,9 @@ class ScopeFromTest {
             "jar:file:/path/to/resxel.jar!/to/file.txt, jar:file:/path/to/resxel.jar, /to/file.txt",
     })
     @DisplayName("handle file locations on jar")
-    void handleFileLocationsOnJar(final String input, final String expectedSource, final String expectedPath) {
+    void handleFileLocationsOnJar(final String input,
+                                  final String expectedSource,
+                                  final String expectedPath) {
         // Location location = new Locator(input);
 //        assertEquals("jar:file", location3.scheme());
 //        assertEquals(URI.create(expectedSource), location3.source());

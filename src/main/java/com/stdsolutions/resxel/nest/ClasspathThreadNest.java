@@ -29,7 +29,9 @@ public final class ClasspathThreadNest {
 
     public Set<Scope> scopes() throws IOException {
         final Set<Scope> scopes = new HashSet<>();
-        final Enumeration<URL> classpathResources = Thread.currentThread().getContextClassLoader().getResources(path);
+        final Enumeration<URL> classpathResources = Thread.currentThread()
+                .getContextClassLoader()
+                .getResources(path);
         while (classpathResources.hasMoreElements()) {
             final URL url = classpathResources.nextElement();
             final Scope scope = new ScopeFrom(modes).by(url);
