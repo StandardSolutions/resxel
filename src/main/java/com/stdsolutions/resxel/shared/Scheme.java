@@ -1,3 +1,7 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2025 Merkurev Sergei
+ * SPDX-License-Identifier: Apache-2.0
+ */
 package com.stdsolutions.resxel.shared;
 
 import java.util.Objects;
@@ -13,6 +17,7 @@ import java.util.regex.Pattern;
  * </p>
  *
  * @see <a href="https://www.rfc-editor.org/rfc/rfc3986#section-3.1">RFC 3986 Section 3.1</a>
+ * @since 0.0.27
  */
 public final class Scheme {
 
