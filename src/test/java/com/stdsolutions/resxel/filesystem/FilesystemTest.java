@@ -1,7 +1,16 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2025 Merkurev Sergei
+ * SPDX-License-Identifier: Apache-2.0
+ */
 package com.stdsolutions.resxel.filesystem;
 
 import org.junit.jupiter.api.Disabled;
 
+/**
+ * Test.
+ *
+ * @since 0.0.27
+ */
 @Disabled
 class FilesystemTest {
 }

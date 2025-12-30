@@ -1,3 +1,7 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2025 Merkurev Sergei
+ * SPDX-License-Identifier: Apache-2.0
+ */
 package com.stdsolutions.resxel.file;
 
 import com.stdsolutions.resxel.Resource;
@@ -9,10 +13,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * File-based scope implementation.
+ *
+ * @since 0.0.27
+ */
 final class FileScope implements Scope {
 
     private final String value;
 
+    /**
+     * Creates a new FileScope.
+     *
+     * @param value the directory path
+     */
     FileScope(final String value) {
         this.value = value;
     }

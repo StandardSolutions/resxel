@@ -1,17 +1,48 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2025 Merkurev Sergei
+ * SPDX-License-Identifier: Apache-2.0
+ */
 package com.stdsolutions.resxel.shared;
 
 import java.util.Objects;
 
+/**
+ * Result type for operations that may succeed or fail.
+ *
+ * @param <T> the type of the success value
+ * @since 0.0.27
+ */
 public sealed interface Result<T> permits Result.Ok, Result.Err {
 
+    /**
+     * Creates a successful result.
+     *
+     * @param value the success value
+     * @param <T> the type of the value
+     * @return the result
+     */
     static <T> Result<T> ok(T value) {
         return new Ok<>(Objects.requireNonNull(value));
     }
 
+    /**
+     * Creates a failed result.
+     *
+     * @param cause the error cause
+     * @param <T> the type of the value
+     * @return the result
+     */
     static <T> Result<T> err(Throwable cause) {
         return new Err<>(Objects.requireNonNull(cause));
     }
 
+    /**
+     * Executes the supplier and wraps result.
+     *
+     * @param supplier the supplier
+     * @param <T> the type of the value
+     * @return the result
+     */
     static <T> Result<T> tryCatch(CheckedSupplier<? extends T> supplier) {
         try {
             return ok(supplier.get());
@@ -20,11 +51,30 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
         }
     }
 
+    /**
+     * Successful result record.
+     *
+     * @param value the success value
+     * @param <T> the type of the value
+     * @since 0.0.27
+     */
     record Ok<T>(T value) implements Result<T> {
 
     }
 
+    /**
+     * Failed result record.
+     *
+     * @param cause the error cause
+     * @param <T> the type of the value
+     * @since 0.0.27
+     */
     record Err<T>(Throwable cause) implements Result<T> {
+        /**
+         * Compact constructor.
+         *
+         * @param cause the error cause
+         */
         public Err {
             Objects.requireNonNull(cause);
         }

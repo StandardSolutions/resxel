@@ -1,3 +1,7 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2025 Merkurev Sergei
+ * SPDX-License-Identifier: Apache-2.0
+ */
 package com.stdsolutions.resxel.jar;
 
 import org.junit.jupiter.api.Test;
@@ -5,6 +9,11 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test.
+ *
+ * @since 0.0.27
+ */
 class JarSourceTest {
 
     @Test

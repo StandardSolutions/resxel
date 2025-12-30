@@ -1,3 +1,7 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2025 Merkurev Sergei
+ * SPDX-License-Identifier: Apache-2.0
+ */
 package com.stdsolutions.resxel.shared;
 
 import java.nio.file.Path;
@@ -15,6 +19,8 @@ import java.nio.file.Paths;
  *
  * <p>All paths are normalized and converted to use forward slashes for consistency.
  * Only relative paths within the current directory tree are allowed.
+ *
+ * @since 0.0.27
  */
 public final class SafedPath {
 
@@ -25,7 +31,7 @@ public final class SafedPath {
      *
      * @param migrationPath the path string to validate and sanitize
      * @throws IllegalArgumentException if the path is null, blank, contains traversal patterns,
-     * or is absolute
+     *  or is absolute
      */
     public SafedPath(final String migrationPath) {
         final Path path = Paths.get(migrationPath).normalize();
