@@ -22,7 +22,7 @@ final class JarFileLocation implements Location {
     /**
      * Creates a new JarFileLocation.
      *
-     * @param location the location string
+     * @param location The location string
      */
     public JarFileLocation(final String location) {
         this.location = location;

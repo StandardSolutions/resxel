@@ -15,7 +15,7 @@ public interface CheckedSupplier<T> {
     /**
      * Gets a result.
      *
-     * @return a result
+     * @return A result
      * @throws Exception if unable to get result
      */
     T get() throws Exception;

@@ -23,7 +23,7 @@ public class FilesystemNest {
     /**
      * Creates a new FilesystemNest.
      *
-     * @param location the location path
+     * @param location The location path
      */
     public FilesystemNest(final String location) {
         this.locations = List.of(location);
@@ -32,7 +32,7 @@ public class FilesystemNest {
     /**
      * Creates a new FilesystemNest.
      *
-     * @param locations the location paths
+     * @param locations The location paths
      */
     public FilesystemNest(final List<String> locations) {
         this.locations = locations;
@@ -41,7 +41,7 @@ public class FilesystemNest {
     /**
      * Returns all locations.
      *
-     * @return set of scopes
+     * @return Set of scopes
      */
     public Set<Scope> locations() {
         return Set.of();

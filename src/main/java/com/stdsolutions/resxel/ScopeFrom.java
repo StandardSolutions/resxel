@@ -27,7 +27,7 @@ public final class ScopeFrom {
     /**
      * Creates a new ScopeFrom with the given modes.
      *
-     * @param modes collection of modes
+     * @param modes Collection of modes
      */
     public ScopeFrom(final Collection<Scope.Mode> modes) {
         this.modes = modes.stream()
@@ -38,8 +38,8 @@ public final class ScopeFrom {
     /**
      * Creates a scope from the given path.
      *
-     * @param path the path
-     * @return the scope
+     * @param path The path
+     * @return The scope
      */
     public Scope by(final String path) {
         final Scheme scheme = new Scheme(path);
@@ -50,8 +50,8 @@ public final class ScopeFrom {
     /**
      * Creates a scope from the given URL.
      *
-     * @param url the URL
-     * @return the scope
+     * @param url The URL
+     * @return The scope
      */
     public Scope by(final URL url) {
         return by(String.valueOf(url));

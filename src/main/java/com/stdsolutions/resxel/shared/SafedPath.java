@@ -32,7 +32,7 @@ public final class SafedPath {
     /**
      * Creates a new SafePath from the given string path.
      *
-     * @param migrationPath the path string to validate and sanitize
+     * @param migrationPath The path string to validate and sanitize
      * @throws IllegalArgumentException if the path is null, blank, contains traversal patterns,
      *  or is absolute
      */
@@ -47,7 +47,7 @@ public final class SafedPath {
     /**
      * Returns the validated path.
      *
-     * @return the safe path.
+     * @return The safe path.
      */
     public String value() {
         return this.toString();

@@ -28,7 +28,7 @@ final class FileScope implements Scope {
     /**
      * Creates a new FileScope.
      *
-     * @param value the directory path
+     * @param value The directory path
      */
     FileScope(final String value) {
         this.value = value;

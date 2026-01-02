@@ -17,9 +17,9 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
     /**
      * Creates a successful result.
      *
-     * @param value the success value
+     * @param value The success value
      * @param <T> the type of the value
-     * @return the result
+     * @return The result
      */
     static <T> Result<T> ok(T value) {
         return new Ok<>(Objects.requireNonNull(value));
@@ -28,9 +28,9 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
     /**
      * Creates a failed result.
      *
-     * @param cause the error cause
+     * @param cause The error cause
      * @param <T> the type of the value
-     * @return the result
+     * @return The result
      */
     static <T> Result<T> err(Throwable cause) {
         return new Err<>(Objects.requireNonNull(cause));
@@ -39,9 +39,9 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
     /**
      * Executes the supplier and wraps result.
      *
-     * @param supplier the supplier
+     * @param supplier The supplier
      * @param <T> the type of the value
-     * @return the result
+     * @return The result
      */
     static <T> Result<T> tryCatch(CheckedSupplier<? extends T> supplier) {
         try {
@@ -54,7 +54,7 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
     /**
      * Successful result record.
      *
-     * @param value the success value
+     * @param value The success value
      * @param <T> the type of the value
      * @since 0.0.27
      */
@@ -65,7 +65,7 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
     /**
      * Failed result record.
      *
-     * @param cause the error cause
+     * @param cause The error cause
      * @param <T> the type of the value
      * @since 0.0.27
      */
@@ -73,7 +73,7 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
         /**
          * Compact constructor.
          *
-         * @param cause the error cause
+         * @param cause The error cause
          */
         public Err {
             Objects.requireNonNull(cause);

@@ -23,7 +23,7 @@ final class FileLocation implements Location {
     /**
      * Creates a new FileLocation.
      *
-     * @param value the path value
+     * @param value The path value
      */
     public FileLocation(final String value) {
         this.value = value;
@@ -32,7 +32,7 @@ final class FileLocation implements Location {
     /**
      * Creates a new FileLocation from a Path.
      *
-     * @param path the path
+     * @param path The path
      */
     public FileLocation(final Path path) {
         this.value = path.toString();

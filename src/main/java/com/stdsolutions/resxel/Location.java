@@ -16,7 +16,7 @@ public interface Location {
     /**
      * Returns the path of this location.
      *
-     * @return the path
+     * @return The path
      */
     Path path();
 }
