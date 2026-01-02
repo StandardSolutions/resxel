@@ -15,6 +15,9 @@ import com.stdsolutions.resxel.shared.Result;
  */
 final class JarFileResources implements Resource {
 
+    /**
+     * The resource location.
+     */
     private final Location location;
 
     /**

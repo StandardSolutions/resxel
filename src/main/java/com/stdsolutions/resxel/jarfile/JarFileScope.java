@@ -24,14 +24,20 @@ import java.util.stream.Stream;
  */
 public final class JarFileScope implements Scope {
 
+    /**
+     * The JAR file URI.
+     */
     private final URI uri;
 
+    /**
+     * The scope path within the JAR.
+     */
     private final String scope;
 
     /**
      * Creates a new JarFileScope.
      *
-     * @param uri the JAR file URI
+     * @param uri   the JAR file URI
      * @param scope the scope path within the JAR
      */
     public JarFileScope(final URI uri, final String scope) {
@@ -60,11 +66,11 @@ public final class JarFileScope implements Scope {
             final Path root = fs.getPath(scope);
             try (Stream<Path> paths = Files.walk(root, maxDepth)) {
                 return paths
-                        .filter(Files::isRegularFile)
-                        .map(Path::toString)
-                        .map(JarFileLocation::new)
-                        .map(JarFileResources::new)
-                        .collect(Collectors.toSet());
+                    .filter(Files::isRegularFile)
+                    .map(Path::toString)
+                    .map(JarFileLocation::new)
+                    .map(JarFileResources::new)
+                    .collect(Collectors.toSet());
             }
         } catch (IOException e) {
             return Set.of();

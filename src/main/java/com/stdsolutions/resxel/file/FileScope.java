@@ -20,6 +20,9 @@ import java.util.stream.Stream;
  */
 final class FileScope implements Scope {
 
+    /**
+     * The directory path.
+     */
     private final String value;
 
     /**
@@ -40,10 +43,10 @@ final class FileScope implements Scope {
     public Set<Resource> resources(final int maxDepth) {
         try (Stream<Path> paths = Files.walk(Path.of(value), maxDepth)) {
             return paths.filter(Files::isRegularFile)
-                    .map(Path::toString)
-                    .map(FileLocation::new)
-                    .map(FileResource::new)
-                    .collect(Collectors.toSet());
+                .map(Path::toString)
+                .map(FileLocation::new)
+                .map(FileResource::new)
+                .collect(Collectors.toSet());
         } catch (IOException e) {
             return Set.of();
         }

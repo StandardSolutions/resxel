@@ -14,6 +14,9 @@ import java.nio.file.Path;
  */
 final class JarFileLocation implements Location {
 
+    /**
+     * The location string.
+     */
     private final String location;
 
     /**
@@ -30,20 +33,20 @@ final class JarFileLocation implements Location {
         return Path.of("");
     }
 
-//    @Override
-//    public String scheme() {
-//        return "jar:file";
-//    }
-//
-//    @Override
-//    public URI source() {
-//        final int idx = location.indexOf("!/");
-//        return idx == -1 ? URI.create(location) : URI.create(location.substring(0, idx));
-//    }
-//
-//    @Override
-//    public String path() {
-//        final int idx = location.indexOf("!/");
-//        return idx == -1 ? "/" : location.substring(idx + 1);
-//    }
+    //    @Override
+    //    public String scheme() {
+    //        return "jar:file";
+    //    }
+    //
+    //    @Override
+    //    public URI source() {
+    //        final int idx = location.indexOf("!/");
+    //        return idx == -1 ? URI.create(location) : URI.create(location.substring(0, idx));
+    //    }
+    //
+    //    @Override
+    //    public String path() {
+    //        final int idx = location.indexOf("!/");
+    //        return idx == -1 ? "/" : location.substring(idx + 1);
+    //    }
 }
