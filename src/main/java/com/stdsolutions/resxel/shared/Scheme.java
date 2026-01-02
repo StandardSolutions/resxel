@@ -36,7 +36,7 @@ public final class Scheme {
     /**
      * Constructs a new ParsedScheme from the given value string.
      *
-     * @param value the resource value string to parse
+     * @param value The resource value string to parse
      */
     public Scheme(final String value) {
         Objects.requireNonNull(value, "Location can't be NULL");
@@ -49,7 +49,7 @@ public final class Scheme {
      * If no valid scheme is found in the location string, returns "file" as the default.
      * </p>
      *
-     * @return the URI scheme (e.g., "http", "https", "jar") or "file" if none found
+     * @return The URI scheme (e.g., "http", "https", "jar") or "file" if none found
      */
     public String asString() {
         String rem = value;
@@ -74,7 +74,7 @@ public final class Scheme {
      * If no scheme is present, returns 0 to indicate the entire string is the path.
      * </p>
      *
-     * @return the zero-based index where to cut the scheme from the location string.
+     * @return The zero-based index where to cut the scheme from the location string.
      */
     public int cutIndex() {
         final Matcher matcher = SCHEME_PATTERN.matcher(value);

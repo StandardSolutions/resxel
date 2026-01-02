@@ -25,7 +25,7 @@ final class FileResource implements Resource {
     /**
      * Creates a new FileResource.
      *
-     * @param path the file path
+     * @param path The file path
      */
     public FileResource(final String path) {
         this.location = new FileLocation(path);
@@ -34,7 +34,7 @@ final class FileResource implements Resource {
     /**
      * Creates a new FileResource.
      *
-     * @param location the file location
+     * @param location The file location
      */
     public FileResource(final FileLocation location) {
         this.location = location;

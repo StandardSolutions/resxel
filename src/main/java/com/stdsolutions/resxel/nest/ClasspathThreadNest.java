@@ -32,8 +32,8 @@ public final class ClasspathThreadNest {
     /**
      * Creates a new ClasspathThreadNest.
      *
-     * @param path       the resource path
-     * @param scopeModes the scope modes to use
+     * @param path       The resource path
+     * @param scopeModes The scope modes to use
      */
     public ClasspathThreadNest(final String path, final Collection<Scope.Mode> scopeModes) {
         this.path = path;
@@ -43,7 +43,7 @@ public final class ClasspathThreadNest {
     /**
      * Creates a new ClasspathThreadNest with default modes.
      *
-     * @param path the resource path
+     * @param path The resource path
      */
     public ClasspathThreadNest(final String path) {
         this(path, Set.of(new JarFileMode(), new FileMode()));
@@ -52,7 +52,7 @@ public final class ClasspathThreadNest {
     /**
      * Returns all scopes found in classpath.
      *
-     * @return set of scopes
+     * @return Set of scopes
      * @throws IOException if an I/O error occurs
      */
     public Set<Scope> scopes() throws IOException {

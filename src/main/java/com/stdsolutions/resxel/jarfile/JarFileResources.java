@@ -23,7 +23,7 @@ final class JarFileResources implements Resource {
     /**
      * Creates a new JarFileResources.
      *
-     * @param location the resource location
+     * @param location The resource location
      */
     public JarFileResources(final Location location) {
         this.location = location;

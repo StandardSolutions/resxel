@@ -30,8 +30,8 @@ public final class PartedLocation {
 
     /**
      * Creates a new PartedLocation.
-     * @param fsPath the filesystem path
-     * @param dir the directory
+     * @param fsPath The filesystem path
+     * @param dir The directory
      */
     public PartedLocation(final String fsPath, final String dir) {
         this.isDefaultFilesystem = false;
@@ -41,7 +41,7 @@ public final class PartedLocation {
 
     /**
      * Creates a new PartedLocation from URI.
-     * @param uri the URI
+     * @param uri The URI
      */
     public PartedLocation(final URI uri) {
         this.isDefaultFilesystem = "file".equals(uri.getScheme());
@@ -51,7 +51,7 @@ public final class PartedLocation {
 
     /**
      * Creates a new PartedLocation from URL.
-     * @param url the URL
+     * @param url The URL
      */
     public PartedLocation(final URL url) {
         this.isDefaultFilesystem = "file".equals(url.getProtocol());

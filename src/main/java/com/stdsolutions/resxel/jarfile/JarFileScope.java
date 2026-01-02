@@ -37,8 +37,8 @@ public final class JarFileScope implements Scope {
     /**
      * Creates a new JarFileScope.
      *
-     * @param uri   the JAR file URI
-     * @param scope the scope path within the JAR
+     * @param uri   The JAR file URI
+     * @param scope The scope path within the JAR
      */
     public JarFileScope(final URI uri, final String scope) {
         this.uri = uri;
@@ -48,7 +48,7 @@ public final class JarFileScope implements Scope {
     /**
      * Creates a new JarFileScope.
      *
-     * @param path the path
+     * @param path The path
      */
     public JarFileScope(final String path) {
         this.uri = null;

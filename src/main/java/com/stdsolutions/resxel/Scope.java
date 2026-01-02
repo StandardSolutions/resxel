@@ -17,15 +17,15 @@ public interface Scope {
     /**
      * Returns all resources in this scope.
      *
-     * @return set of resources
+     * @return Set of resources
      */
     Set<Resource> resources();
 
     /**
      * Returns resources up to the specified depth.
      *
-     * @param maxDepth maximum depth to traverse
-     * @return set of resources
+     * @param maxDepth Maximum depth to traverse
+     * @return Set of resources
      */
     Set<Resource> resources(int maxDepth);
 
@@ -39,15 +39,15 @@ public interface Scope {
         /**
          * Returns the name of this mode.
          *
-         * @return mode name
+         * @return Mode name
          */
         String name();
 
         /**
          * Creates a scope for the given path.
          *
-         * @param path the path
-         * @return the scope
+         * @param path The path
+         * @return The scope
          */
         Scope scope(String path);
     }
@@ -62,21 +62,21 @@ public interface Scope {
         /**
          * Returns the original path.
          *
-         * @return original path
+         * @return Original path
          */
         String original();
 
         /**
          * Returns the scope.
          *
-         * @return the scope
+         * @return The scope
          */
         Scope scope();
 
         /**
          * Returns the mount URI.
          *
-         * @return mount URI
+         * @return Mount URI
          */
         URI mount();
     }

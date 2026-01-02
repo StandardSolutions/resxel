@@ -25,7 +25,7 @@ public interface Resource {
      * consider using {@link #inputStream()} instead.
      * </p>
      *
-     * @return the resource content as bytes, never {@code null}
+     * @return The resource content as bytes, never {@code null}
      */
     Result<byte[]> asBytes();
 
