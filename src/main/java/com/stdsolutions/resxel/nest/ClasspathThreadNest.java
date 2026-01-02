@@ -10,11 +10,7 @@ import com.stdsolutions.resxel.file.FileMode;
 import com.stdsolutions.resxel.jarfile.JarFileMode;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Classpath-based nest implementation using thread context classloader.
@@ -23,14 +19,20 @@ import java.util.Set;
  */
 public final class ClasspathThreadNest {
 
+    /**
+     * The resource path.
+     */
     private final String path;
 
+    /**
+     * The collection of scope modes.
+     */
     private final Collection<Scope.Mode> modes;
 
     /**
      * Creates a new ClasspathThreadNest.
      *
-     * @param path the resource path
+     * @param path       the resource path
      * @param scopeModes the scope modes to use
      */
     public ClasspathThreadNest(final String path, final Collection<Scope.Mode> scopeModes) {
@@ -56,8 +58,8 @@ public final class ClasspathThreadNest {
     public Set<Scope> scopes() throws IOException {
         final Set<Scope> scopes = new HashSet<>();
         final Enumeration<URL> classpathResources = Thread.currentThread()
-                .getContextClassLoader()
-                .getResources(path);
+            .getContextClassLoader()
+            .getResources(path);
         while (classpathResources.hasMoreElements()) {
             final URL url = classpathResources.nextElement();
             final Scope scope = new ScopeFrom(modes).by(url);

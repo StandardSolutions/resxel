@@ -17,6 +17,9 @@ import java.nio.file.Files;
  */
 final class FileResource implements Resource {
 
+    /**
+     * The file location.
+     */
     private final Location location;
 
     /**

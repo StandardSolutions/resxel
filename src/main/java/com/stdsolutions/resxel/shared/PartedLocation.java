@@ -13,10 +13,19 @@ import java.net.URL;
  */
 public final class PartedLocation {
 
+    /**
+     * Indicates whether this location uses the default filesystem.
+     */
     private final boolean isDefaultFilesystem;
 
+    /**
+     * The filesystem path.
+     */
     private final String fsPath;
 
+    /**
+     * The directory path.
+     */
     private final String dir;
 
     /**

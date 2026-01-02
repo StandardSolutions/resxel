@@ -15,6 +15,9 @@ import java.nio.file.Path;
  */
 final class FileLocation implements Location {
 
+    /**
+     * The path value.
+     */
     private final String value;
 
     /**
@@ -36,16 +39,16 @@ final class FileLocation implements Location {
     }
 
     //
-//    @Override
-//    public String scheme() {
-//        return "file";
-//    }
-//
-//    @Override
-//    public URI source() {
-//        return URI.create("");
-//    }
-//
+    //    @Override
+    //    public String scheme() {
+    //        return "file";
+    //    }
+    //
+    //    @Override
+    //    public URI source() {
+    //        return URI.create("");
+    //    }
+    //
     @Override
     public Path path() {
         final String unPrefixed = value.startsWith("file:") ? value.substring(5) : value;

@@ -15,6 +15,9 @@ import java.util.Set;
  */
 public class FilesystemNest {
 
+    /**
+     * The list of filesystem locations.
+     */
     private final List<String> locations;
 
     /**

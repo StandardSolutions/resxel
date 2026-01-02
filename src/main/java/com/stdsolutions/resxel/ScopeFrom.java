@@ -19,7 +19,9 @@ import java.util.stream.Collectors;
  */
 public final class ScopeFrom {
 
-
+    /**
+     * Map of scheme names to their corresponding scope modes.
+     */
     private final Map<String, Scope.Mode> modes;
 
     /**
@@ -29,8 +31,8 @@ public final class ScopeFrom {
      */
     public ScopeFrom(final Collection<Scope.Mode> modes) {
         this.modes = modes.stream()
-                .distinct()
-                .collect(Collectors.toMap(Scope.Mode::name, Function.identity()));
+            .distinct()
+            .collect(Collectors.toMap(Scope.Mode::name, Function.identity()));
     }
 
     /**

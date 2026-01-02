@@ -24,6 +24,9 @@ import java.nio.file.Paths;
  */
 public final class SafedPath {
 
+    /**
+     * The validated path value.
+     */
     private final String value;
 
     /**
@@ -52,10 +55,7 @@ public final class SafedPath {
 
     @Override
     public String toString() {
-        return this.value
-                .trim()
-                .replace("\\", "/")
-                .replaceAll("/+", "/");
+        return this.value.trim().replace("\\", "/").replaceAll("/+", "/");
     }
 
     private static void checkEmptyPath(final String path) {
