@@ -43,7 +43,7 @@ public class FilesystemNest {
      *
      * @return Set of scopes
      */
-    public Set<Scope> locations() {
+    public static Set<Scope> locations() {
         return Set.of();
     }
 }

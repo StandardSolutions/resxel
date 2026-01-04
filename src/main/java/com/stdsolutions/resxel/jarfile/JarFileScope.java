@@ -57,13 +57,13 @@ public final class JarFileScope implements Scope {
 
     @Override
     public Set<Resource> resources() {
-        return resources(Integer.MAX_VALUE);
+        return this.resources(Integer.MAX_VALUE);
     }
 
     @Override
     public Set<Resource> resources(final int maxDepth) {
-        try (FileSystem fs = FileSystems.newFileSystem(uri, Collections.emptyMap())) {
-            final Path root = fs.getPath(scope);
+        try (FileSystem fs = FileSystems.newFileSystem(this.uri, Collections.emptyMap())) {
+            final Path root = fs.getPath(this.scope);
             try (Stream<Path> paths = Files.walk(root, maxDepth)) {
                 return paths
                     .filter(Files::isRegularFile)
@@ -72,7 +72,7 @@ public final class JarFileScope implements Scope {
                     .map(JarFileResources::new)
                     .collect(Collectors.toSet());
             }
-        } catch (IOException e) {
+        } catch (final IOException e) {
             return Set.of();
         }
     }

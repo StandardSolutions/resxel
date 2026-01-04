@@ -21,7 +21,7 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
      * @param <T> the type of the value
      * @return The result
      */
-    static <T> Result<T> ok(T value) {
+    static <T> Result<T> ok(final T value) {
         return new Ok<>(Objects.requireNonNull(value));
     }
 
@@ -32,7 +32,7 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
      * @param <T> the type of the value
      * @return The result
      */
-    static <T> Result<T> err(Throwable cause) {
+    static <T> Result<T> err(final Throwable cause) {
         return new Err<>(Objects.requireNonNull(cause));
     }
 
@@ -43,10 +43,10 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
      * @param <T> the type of the value
      * @return The result
      */
-    static <T> Result<T> tryCatch(CheckedSupplier<? extends T> supplier) {
+    static <T> Result<T> tryCatch(final CheckedSupplier<? extends T> supplier) {
         try {
             return ok(supplier.get());
-        } catch (Exception ex) {
+        } catch (final Exception ex) {
             return err(ex);
         }
     }

@@ -43,7 +43,7 @@ public final class ScopeFrom {
      */
     public Scope by(final String path) {
         final Scheme scheme = new Scheme(path);
-        final Scope.Mode mode = modes.getOrDefault(scheme.asString(), new UnexpectedMode());
+        final Scope.Mode mode = this.modes.getOrDefault(scheme.asString(), new UnexpectedMode());
         return mode.scope(path);
     }
 
@@ -54,6 +54,6 @@ public final class ScopeFrom {
      * @return The scope
      */
     public Scope by(final URL url) {
-        return by(String.valueOf(url));
+        return this.by(String.valueOf(url));
     }
 }

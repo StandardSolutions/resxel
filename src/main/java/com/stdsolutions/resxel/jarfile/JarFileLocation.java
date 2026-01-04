@@ -24,7 +24,7 @@ final class JarFileLocation implements Location {
      *
      * @param location The location string
      */
-    public JarFileLocation(final String location) {
+    JarFileLocation(final String location) {
         this.location = location;
     }
 

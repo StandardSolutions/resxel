@@ -52,7 +52,7 @@ public final class Scheme {
      * @return The URI scheme (e.g., "http", "https", "jar") or "file" if none found
      */
     public String asString() {
-        String rem = value;
+        String rem = this.value;
         while (true) {
             final Matcher matcher = SCHEME_PATTERN.matcher(rem);
             if (matcher.find()) {
@@ -61,10 +61,10 @@ public final class Scheme {
                 break;
             }
         }
-        if (rem.length() == value.length()) {
+        if (rem.length() == this.value.length()) {
             return "file";
         }
-        return value.substring(0, value.length() - rem.length() - 1);
+        return this.value.substring(0, this.value.length() - rem.length() - 1);
     }
 
     /**
@@ -77,7 +77,7 @@ public final class Scheme {
      * @return The zero-based index where to cut the scheme from the location string.
      */
     public int cutIndex() {
-        final Matcher matcher = SCHEME_PATTERN.matcher(value);
+        final Matcher matcher = SCHEME_PATTERN.matcher(this.value);
         return matcher.find() ? this.asString().length() + 1 : 0;
     }
 }
