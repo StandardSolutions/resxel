@@ -59,10 +59,10 @@ public final class ClasspathThreadNest {
         final Set<Scope> scopes = new HashSet<>();
         final Enumeration<URL> classpathResources = Thread.currentThread()
             .getContextClassLoader()
-            .getResources(path);
+            .getResources(this.path);
         while (classpathResources.hasMoreElements()) {
             final URL url = classpathResources.nextElement();
-            final Scope scope = new ScopeFrom(modes).by(url);
+            final Scope scope = new ScopeFrom(this.modes).by(url);
             scopes.add(scope);
         }
         return Collections.unmodifiableSet(scopes);

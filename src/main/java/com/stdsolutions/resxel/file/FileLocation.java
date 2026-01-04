@@ -25,7 +25,7 @@ final class FileLocation implements Location {
      *
      * @param value The path value
      */
-    public FileLocation(final String value) {
+    FileLocation(final String value) {
         this.value = value;
     }
 
@@ -34,7 +34,7 @@ final class FileLocation implements Location {
      *
      * @param path The path
      */
-    public FileLocation(final Path path) {
+    FileLocation(final Path path) {
         this.value = path.toString();
     }
 
@@ -51,7 +51,9 @@ final class FileLocation implements Location {
     //
     @Override
     public Path path() {
-        final String unPrefixed = value.startsWith("file:") ? value.substring(5) : value;
+        final String unPrefixed = this.value.startsWith("file:")
+            ? this.value.substring(5)
+            : this.value;
         return Path.of(new SafedPath(unPrefixed).value());
     }
 
