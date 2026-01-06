@@ -5,12 +5,16 @@
 package com.stdsolutions.resxel.nest;
 
 import com.stdsolutions.resxel.Scope;
-import com.stdsolutions.resxel.ScopeFrom;
+import com.stdsolutions.resxel.ScopeWith;
 import com.stdsolutions.resxel.file.FileMode;
 import com.stdsolutions.resxel.jarfile.JarFileMode;
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Classpath-based nest implementation using thread context classloader.
@@ -33,11 +37,11 @@ public final class ClasspathThreadNest {
      * Creates a new ClasspathThreadNest.
      *
      * @param path       The resource path
-     * @param scopeModes The scope modes to use
+     * @param modes The scope modes to use
      */
-    public ClasspathThreadNest(final String path, final Collection<Scope.Mode> scopeModes) {
+    public ClasspathThreadNest(final String path, final Collection<Scope.Mode> modes) {
         this.path = path;
-        this.modes = scopeModes;
+        this.modes = modes;
     }
 
     /**
@@ -57,12 +61,12 @@ public final class ClasspathThreadNest {
      */
     public Set<Scope> scopes() throws IOException {
         final Set<Scope> scopes = new HashSet<>();
-        final Enumeration<URL> classpathResources = Thread.currentThread()
+        final Enumeration<URL> resources = Thread.currentThread()
             .getContextClassLoader()
             .getResources(this.path);
-        while (classpathResources.hasMoreElements()) {
-            final URL url = classpathResources.nextElement();
-            final Scope scope = new ScopeFrom(this.modes).by(url);
+        while (resources.hasMoreElements()) {
+            final URL url = resources.nextElement();
+            final Scope scope = new ScopeWith(this.modes).from(url);
             scopes.add(scope);
         }
         return Collections.unmodifiableSet(scopes);

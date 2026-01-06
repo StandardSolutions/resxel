@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  *
  * @since 0.0.27
  */
-public final class ScopeFrom {
+public final class ScopeWith {
 
     /**
      * Map of scheme names to their corresponding scope modes.
@@ -29,7 +29,7 @@ public final class ScopeFrom {
      *
      * @param modes Collection of modes
      */
-    public ScopeFrom(final Collection<Scope.Mode> modes) {
+    public ScopeWith(final Collection<Scope.Mode> modes) {
         this.modes = modes.stream()
             .distinct()
             .collect(Collectors.toMap(Scope.Mode::name, Function.identity()));
@@ -41,7 +41,7 @@ public final class ScopeFrom {
      * @param path The path
      * @return The scope
      */
-    public Scope by(final String path) {
+    public Scope from(final String path) {
         final Scheme scheme = new Scheme(path);
         final Scope.Mode mode = this.modes.getOrDefault(scheme.asString(), new UnexpectedMode());
         return mode.scope(path);
@@ -53,7 +53,7 @@ public final class ScopeFrom {
      * @param url The URL
      * @return The scope
      */
-    public Scope by(final URL url) {
-        return this.by(String.valueOf(url));
+    public Scope from(final URL url) {
+        return this.from(String.valueOf(url));
     }
 }

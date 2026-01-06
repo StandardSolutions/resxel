@@ -78,6 +78,10 @@ public final class Scheme {
      */
     public int cutIndex() {
         final Matcher matcher = SCHEME_PATTERN.matcher(this.value);
-        return matcher.find() ? this.asString().length() + 1 : 0;
+        int idx = 0;
+        if (matcher.find()) {
+            idx = this.asString().length() + 1;
+        }
+        return idx;
     }
 }
