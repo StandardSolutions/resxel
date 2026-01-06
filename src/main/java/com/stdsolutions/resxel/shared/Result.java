@@ -12,7 +12,7 @@ import java.util.Objects;
  * @param <T> the type of the success value
  * @since 0.0.27
  */
-public sealed interface Result<T> permits Result.Ok, Result.Err {
+public sealed interface Result<T> permits Result.Success, Result.Err {
 
     /**
      * Creates a successful result.
@@ -21,8 +21,8 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
      * @param <T> the type of the value
      * @return The result
      */
-    static <T> Result<T> ok(final T value) {
-        return new Ok<>(Objects.requireNonNull(value));
+    static <T> Result<T> success(final T value) {
+        return new Success<>(Objects.requireNonNull(value));
     }
 
     /**
@@ -45,7 +45,7 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
      */
     static <T> Result<T> tryCatch(final CheckedSupplier<? extends T> supplier) {
         try {
-            return ok(supplier.get());
+            return success(supplier.get());
         } catch (final Exception ex) {
             return err(ex);
         }
@@ -58,7 +58,7 @@ public sealed interface Result<T> permits Result.Ok, Result.Err {
      * @param <T> the type of the value
      * @since 0.0.27
      */
-    record Ok<T>(T value) implements Result<T> {
+    record Success<T>(T value) implements Result<T> {
 
     }
 

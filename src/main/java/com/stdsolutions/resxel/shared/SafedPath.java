@@ -32,12 +32,12 @@ public final class SafedPath {
     /**
      * Creates a new SafePath from the given string path.
      *
-     * @param migrationPath The path string to validate and sanitize
+     * @param value The path string to validate and sanitize
      * @throws IllegalArgumentException if the path is null, blank, contains traversal patterns,
      *  or is absolute
      */
-    public SafedPath(final String migrationPath) {
-        final Path path = Paths.get(migrationPath).normalize();
+    public SafedPath(final String value) {
+        final Path path = Paths.get(value).normalize();
         final String normalized = path.toString();
         checkEmptyPath(normalized);
         checkTraversalPattern(normalized);
@@ -69,7 +69,8 @@ public final class SafedPath {
 
     private static void checkTraversalPattern(final String path) {
         if (path.contains("..")) {
-            throw new IllegalArgumentException("Path contains unsafe traversal patterns: " + path);
+            final String msg = String.format("Path contains unsafe traversal patterns: %s", path);
+            throw new IllegalArgumentException(msg);
         }
     }
 }

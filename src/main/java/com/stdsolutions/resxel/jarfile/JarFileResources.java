@@ -31,12 +31,12 @@ final class JarFileResources implements Resource {
 
     @Override
     public Result<byte[]> asBytes() {
-        return new Result.Ok<>(new byte[0]);
+        return new Result.Success<>(new byte[0]);
     }
 
     @Override
     public Result<String> asString() {
-        return new Result.Ok<>("");
+        return new Result.Success<>("");
     }
 
     @Override

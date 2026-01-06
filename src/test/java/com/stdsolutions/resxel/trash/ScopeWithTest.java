@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.CsvSource;
  *
  * @since 0.0.27
  */
-class ScopeFromTest {
+class ScopeWithTest {
 
     // ===================================
     // ---------- REGULAR FILES ----------
