@@ -4,29 +4,33 @@
  */
 package com.stdsolutions.resxel.jar;
 
-import org.junit.jupiter.api.Test;
 import java.net.URL;
 import java.net.URLClassLoader;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test.
  *
  * @since 0.0.27
  */
-class JarSourceTest {
+final class JarSourceTest {
 
     @Test
     void resources() throws Exception {
-        final URL jarFileUrl = Thread.currentThread()
+        final URL url = Thread.currentThread()
             .getContextClassLoader()
             .getResource("jar/resxel.jar");
-        String protocol = "";
-        try (URLClassLoader jarClassLoader = new URLClassLoader(new URL[]{jarFileUrl}, null)) {
+        final String protocol;
+        try (URLClassLoader jarClassLoader = new URLClassLoader(new URL[]{url}, null)) {
             final URL resource = jarClassLoader.getResource("simplelogger.properties");
             protocol = resource.getProtocol();
-            System.out.println(resource.getProtocol());
         }
-        assertEquals("jar", protocol);
+        MatcherAssert.assertThat(
+            "Protocol should be jar",
+            protocol,
+            Matchers.equalTo("jar")
+        );
     }
 }

@@ -24,10 +24,10 @@ public interface Scope {
     /**
      * Returns resources up to the specified depth.
      *
-     * @param maxDepth Maximum depth to traverse
+     * @param depth Maximum depth to traverse
      * @return Set of resources
      */
-    Set<Resource> resources(int maxDepth);
+    Set<Resource> resources(int depth);
 
     /**
      * Mode for scope operations.

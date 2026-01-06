@@ -5,22 +5,26 @@
 package com.stdsolutions.resxel.nest;
 
 import com.stdsolutions.resxel.Scope;
-import org.junit.jupiter.api.Test;
 import java.util.Collection;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test.
  *
  * @since 0.0.27
  */
-class ClasspathThreadNestTest {
+final class ClasspathThreadNestTest {
 
     @Test
     void locations() throws Exception {
         final ClasspathThreadNest source = new ClasspathThreadNest("com");
         final Collection<Scope> resources = source.scopes();
-        System.out.println(resources);
-        assertNotNull(resources);
+        MatcherAssert.assertThat(
+            "Resources should not be null",
+            resources,
+            Matchers.notNullValue()
+        );
     }
 }
