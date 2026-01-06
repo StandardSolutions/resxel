@@ -17,7 +17,13 @@ import java.util.Set;
  */
 public final class UnexpectedScope implements Scope {
 
-    public UnexpectedScope(final String s) {
+    /**
+     * Empty as a plug.
+     *
+     * @param value scope as string
+     */
+    public UnexpectedScope(final String value) {
+        // empty as a plug
     }
 
     @Override
@@ -26,7 +32,7 @@ public final class UnexpectedScope implements Scope {
     }
 
     @Override
-    public Set<Resource> resources(final int maxDepth) {
+    public Set<Resource> resources(final int depth) {
         return Set.of();
     }
 }

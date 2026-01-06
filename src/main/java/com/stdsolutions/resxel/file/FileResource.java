@@ -20,7 +20,7 @@ final class FileResource implements Resource {
     /**
      * The file location.
      */
-    private final Location location;
+    private final Location value;
 
     /**
      * Creates a new FileResource.
@@ -28,32 +28,32 @@ final class FileResource implements Resource {
      * @param path The file path
      */
     FileResource(final String path) {
-        this.location = new FileLocation(path);
+        this(new FileLocation(path));
     }
 
     /**
      * Creates a new FileResource.
      *
-     * @param location The file location
+     * @param value The file location
      */
-    FileResource(final FileLocation location) {
-        this.location = location;
+    FileResource(final FileLocation value) {
+        this.value = value;
     }
 
     @Override
     public Result<byte[]> asBytes() {
-        return Result.tryCatch(() -> Files.readAllBytes(this.location.path()));
+        return Result.tryCatch(() -> Files.readAllBytes(this.value.path()));
     }
 
     @Override
     public Result<String> asString() {
         return Result.tryCatch(
-            () -> Files.readString(this.location.path(), StandardCharsets.UTF_8)
+            () -> Files.readString(this.value.path(), StandardCharsets.UTF_8)
         );
     }
 
     @Override
     public Location location() {
-        return this.location;
+        return this.value;
     }
 }

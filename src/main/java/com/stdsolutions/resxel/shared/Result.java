@@ -44,6 +44,7 @@ public sealed interface Result<T> permits Result.Success, Result.Err {
      * @return The result
      */
     static <T> Result<T> tryCatch(final CheckedSupplier<? extends T> supplier) {
+        // @checkstyle IllegalCatchCheck (5 lines)
         try {
             return success(supplier.get());
         } catch (final Exception ex) {

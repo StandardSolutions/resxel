@@ -40,15 +40,16 @@ final class FileScope implements Scope {
     }
 
     @Override
-    public Set<Resource> resources(final int maxDepth) {
-        try (Stream<Path> paths = Files.walk(Path.of(this.value), maxDepth)) {
-            return paths.filter(Files::isRegularFile)
+    public Set<Resource> resources(final int depth) {
+        Set<Resource> resources = Set.of();
+        try (Stream<Path> paths = Files.walk(Path.of(this.value), depth)) {
+            resources = paths.filter(Files::isRegularFile)
                 .map(Path::toString)
                 .map(FileLocation::new)
                 .map(FileResource::new)
                 .collect(Collectors.toSet());
-        } catch (final IOException e) {
-            return Set.of();
+        } catch (final IOException ignored) {
         }
+        return resources;
     }
 }

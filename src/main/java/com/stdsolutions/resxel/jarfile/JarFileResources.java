@@ -18,15 +18,15 @@ final class JarFileResources implements Resource {
     /**
      * The resource location.
      */
-    private final Location location;
+    private final Location value;
 
     /**
      * Creates a new JarFileResources.
      *
-     * @param location The resource location
+     * @param value The resource location
      */
-    JarFileResources(final Location location) {
-        this.location = location;
+    JarFileResources(final Location value) {
+        this.value = value;
     }
 
     @Override
@@ -36,7 +36,7 @@ final class JarFileResources implements Resource {
 
     @Override
     public Result<String> asString() {
-        return new Result.Success<>("");
+        return new Result.Success<>(value.toString());
     }
 
     @Override
