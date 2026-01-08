@@ -23,10 +23,11 @@ public final class Scheme {
 
     /**
      * Pattern matching URI schemes according to RFC 3986 where scheme as:
-     * {@code ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )}. The pattern requires
-     * at least 2 characters to distinguish from Windows drive letters.
+     * {@code ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )}. Multiple schemes
+     * allowed. The pattern requires at least 2 characters to distinguish from
+     * Windows drive letters.
      */
-    private static final Pattern SCHEME_PATTERN = Pattern.compile("(^[a-zA-Z][a-zA-Z0-9+.-]+):");
+    private static final Pattern SCHEME_PATTERN = Pattern.compile("^(?>[a-zA-Z][a-zA-Z0-9+.-]+:)+");
 
     /**
      * The original location string to parse.
@@ -52,19 +53,13 @@ public final class Scheme {
      * @return The URI scheme (e.g., "http", "https", "jar") or "file" if none found
      */
     public String asString() {
-        String rem = this.value;
-        while (true) {
-            final Matcher matcher = SCHEME_PATTERN.matcher(rem);
-            if (matcher.find()) {
-                rem = rem.substring(matcher.end());
-            } else {
-                break;
-            }
+        String scheme = "file";
+        final Matcher matcher = SCHEME_PATTERN.matcher(this.value);
+        if (matcher.find()) {
+            scheme = matcher.group();
+            scheme = scheme.substring(0, scheme.length() - 1);
         }
-        if (rem.length() == this.value.length()) {
-            return "file";
-        }
-        return this.value.substring(0, this.value.length() - rem.length() - 1);
+        return scheme;
     }
 
     /**
