@@ -4,7 +4,6 @@
  */
 package com.stdsolutions.resxel.shared;
 
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,7 +39,6 @@ public final class Scheme {
      * @param value The resource value string to parse
      */
     public Scheme(final String value) {
-        Objects.requireNonNull(value, "Location can't be NULL");
         this.value = value;
     }
 

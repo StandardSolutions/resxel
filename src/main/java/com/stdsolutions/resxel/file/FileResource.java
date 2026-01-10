@@ -7,6 +7,7 @@ package com.stdsolutions.resxel.file;
 import com.stdsolutions.resxel.Location;
 import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.shared.Result;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
@@ -42,14 +43,26 @@ final class FileResource implements Resource {
 
     @Override
     public Result<byte[]> asBytes() {
-        return Result.tryCatch(() -> Files.readAllBytes(this.value.path()));
+        Result<byte[]> result;
+        try {
+            result = new Result.Success<>(Files.readAllBytes(this.value.path()));
+        } catch (final IOException ex) {
+            result = new Result.Err<>(ex);
+        }
+        return result;
     }
 
     @Override
     public Result<String> asString() {
-        return Result.tryCatch(
-            () -> Files.readString(this.value.path(), StandardCharsets.UTF_8)
-        );
+        Result<String> result;
+        try {
+            result = new Result.Success<>(
+                Files.readString(this.value.path(), StandardCharsets.UTF_8)
+            );
+        } catch (final IOException ex) {
+            result = new Result.Err<>(ex);
+        }
+        return result;
     }
 
     @Override

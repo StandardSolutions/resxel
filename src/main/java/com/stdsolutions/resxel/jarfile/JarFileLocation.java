@@ -30,7 +30,7 @@ final class JarFileLocation implements Location {
 
     @Override
     public Path path() {
-        return Path.of(location);
+        return Path.of(this.location);
     }
 
     //    @Override
