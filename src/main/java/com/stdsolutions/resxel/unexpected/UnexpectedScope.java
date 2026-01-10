@@ -20,9 +20,10 @@ public final class UnexpectedScope implements Scope {
     /**
      * Empty as a plug.
      *
-     * @param value scope as string
+     * @param ignored Scope as string
+     * @checkstyle UnusedFormalParameter (5 lines)
      */
-    public UnexpectedScope(final String value) {
+    public UnexpectedScope(final String ignored) {
         // empty as a plug
     }
 

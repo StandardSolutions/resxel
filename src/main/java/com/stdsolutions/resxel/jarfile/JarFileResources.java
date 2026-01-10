@@ -36,7 +36,7 @@ final class JarFileResources implements Resource {
 
     @Override
     public Result<String> asString() {
-        return new Result.Success<>(value.toString());
+        return new Result.Success<>(this.value.toString());
     }
 
     @Override

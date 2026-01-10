@@ -15,44 +15,6 @@ import java.util.Objects;
 public sealed interface Result<T> permits Result.Success, Result.Err {
 
     /**
-     * Creates a successful result.
-     *
-     * @param value The success value
-     * @param <T> the type of the value
-     * @return The result
-     */
-    static <T> Result<T> success(final T value) {
-        return new Success<>(Objects.requireNonNull(value));
-    }
-
-    /**
-     * Creates a failed result.
-     *
-     * @param cause The error cause
-     * @param <T> the type of the value
-     * @return The result
-     */
-    static <T> Result<T> err(final Throwable cause) {
-        return new Err<>(Objects.requireNonNull(cause));
-    }
-
-    /**
-     * Executes the supplier and wraps result.
-     *
-     * @param supplier The supplier
-     * @param <T> the type of the value
-     * @return The result
-     */
-    static <T> Result<T> tryCatch(final CheckedSupplier<? extends T> supplier) {
-        // @checkstyle IllegalCatchCheck (5 lines)
-        try {
-            return success(supplier.get());
-        } catch (final Exception ex) {
-            return err(ex);
-        }
-    }
-
-    /**
      * Successful result record.
      *
      * @param value The success value

@@ -5,7 +5,6 @@
 package com.stdsolutions.resxel.file;
 
 import com.stdsolutions.resxel.Location;
-import com.stdsolutions.resxel.shared.SafedPath;
 import java.nio.file.Path;
 
 /**
@@ -55,7 +54,7 @@ final class FileLocation implements Location {
         if (this.value.startsWith("file:")) {
             unprefixed = this.value.substring(5);
         }
-        return Path.of(new SafedPath(unprefixed).value());
+        return Path.of(unprefixed);
     }
 
 }
