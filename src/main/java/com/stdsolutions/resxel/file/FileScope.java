@@ -7,6 +7,7 @@ package com.stdsolutions.resxel.file;
 import com.stdsolutions.resxel.Resource;
 import com.stdsolutions.resxel.Scope;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Set;
@@ -41,15 +42,14 @@ final class FileScope implements Scope {
 
     @Override
     public Set<Resource> resources(final int depth) {
-        Set<Resource> resources = Set.of();
         try (Stream<Path> paths = Files.walk(Path.of(this.value), depth)) {
-            resources = paths.filter(Files::isRegularFile)
+            return paths.filter(Files::isRegularFile)
                 .map(Path::toString)
                 .map(FileLocation::new)
                 .map(FileResource::new)
                 .collect(Collectors.toSet());
-        } catch (final IOException ignored) {
+        } catch (final IOException ex) {
+            throw new UncheckedIOException(ex);
         }
-        return resources;
     }
 }
