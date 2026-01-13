@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: Copyright (c) 2025 Merkurev Sergei
  * SPDX-License-Identifier: Apache-2.0
  */
-package com.stdsolutions.resxel.trash;
+package com.stdsolutions.resxel;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
