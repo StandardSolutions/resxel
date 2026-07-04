@@ -4,8 +4,8 @@
  */
 
 /**
- * Trash, tests.
+ * Root, tests.
  *
  * @since 0.0.27
  */
-package com.stdsolutions.resxel.trash;
+package com.stdsolutions.resxel;

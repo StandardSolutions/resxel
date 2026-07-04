@@ -2,9 +2,8 @@
  * SPDX-FileCopyrightText: Copyright (c) 2025 Merkurev Sergei
  * SPDX-License-Identifier: Apache-2.0
  */
-package com.stdsolutions.resxel.trash;
+package com.stdsolutions.resxel.shared;
 
-import com.stdsolutions.resxel.shared.Scheme;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Disabled;
